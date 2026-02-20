@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Megafans Research Hub | Dr. Sounny</title>
+    <title>Megafan Labs | Lead Researcher: Dr. Sounny</title>
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Central research hub for Fluvial Megafans studies, including PhD research, publications, and the BeautifulFans imagery explorer.">
+    <meta name="description" content="Megafan Labs: Central research hub for Fluvial Megafans studies, lead by Dr. Sounny. Featuring PhD research, publications, and the BeautifulFans imagery explorer.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +38,7 @@
                         bg: '#0a0a0f',
                         primary: '#00d2ff',
                         secondary: '#3a7bd5',
+                        slate_blue: '#0f172a',
                     }
                 }
             }
@@ -87,6 +88,11 @@
             transform: scale(1.1) rotate(5deg);
             color: #00d2ff;
         }
+
+        .profile-border {
+            border: 3px solid #00d2ff;
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -131,7 +137,7 @@
         ];
 
         function App() {
-            const [view, setView] = useState('hub'); // 'hub' or 'imagery'
+            const [view, setView] = useState('hub'); 
 
             return (
                 <div className="min-h-screen flex flex-col">
@@ -139,7 +145,7 @@
                     <nav className="glass sticky top-0 z-[2000] px-6 py-4">
                         <div className="max-w-7xl mx-auto flex justify-between items-center">
                             <div className="font-heading font-extrabold text-2xl cursor-pointer" onClick={() => setView('hub')}>
-                                MEGA<span className="text-primary">FANS</span>
+                                MEGAFAN<span className="text-primary tracking-widest ml-1">LABS</span>
                             </div>
                             <div className="flex gap-6 items-center">
                                 <button onClick={() => setView('hub')} className={`text-sm font-bold transition-colors ${view === 'hub' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>THE HUB</button>
@@ -153,7 +159,7 @@
 
                     {/* Footer */}
                     <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm mt-auto">
-                        <p>© {new Date().getFullYear()} Dr. Moulay Anwar Sounny-Slitine. Megafans Research Project.</p>
+                        <p>© {new Date().getFullYear()} Dr. Moulay Anwar Sounny-Slitine. Megafan Labs.</p>
                     </footer>
                 </div>
             );
@@ -165,34 +171,62 @@
             return (
                 <div className="animate-in fade-in duration-700">
                     {/* Hero Section */}
-                    <header className="relative py-24 px-6 text-center overflow-hidden">
+                    <header className="relative pt-24 pb-12 px-6 text-center overflow-hidden">
                         <div className="hero-glow"></div>
                         <h1 className="text-6xl md:text-8xl font-heading font-extrabold tracking-tighter mb-4 gradient-text">
-                            Megafans Hub
+                            Megafan Labs
                         </h1>
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-                            A central repository spanning PhD research, planetary geomorphology, and interactive Earth observation.
+                            Advancing the frontiers of fluvial geomorphology and Earth observation.
                         </p>
                     </header>
+
+                    {/* Lead Researcher Card - Inspired by storymap */}
+                    <section className="max-w-4xl mx-auto px-6 mb-24">
+                        <div className="glass p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 border border-white/10">
+                            <div className="relative">
+                                <img 
+                                    src="https://sounny.github.io/storymap/assets/instructor.png" 
+                                    className="w-32 h-32 md:w-40 md:h-40 rounded-full profile-border object-cover" 
+                                    alt="Dr. Sounny"
+                                />
+                            </div>
+                            <div className="text-center md:text-left">
+                                <span className="text-primary font-bold tracking-[0.2em] text-xs mb-2 block">LEAD RESEARCHER</span>
+                                <h2 className="text-4xl font-heading font-extrabold mb-4">Dr. Sounny</h2>
+                                <p className="text-gray-400 leading-relaxed mb-6 italic">
+                                    "Dr. Sounny is a leading expert in Geospatial Science and Technology, dedicated to making complex GIS concepts accessible to all. Through Megafan Labs, he bridges the gap between physical geography and social impact."
+                                </p>
+                                <div className="flex justify-center md:justify-start gap-4">
+                                    <a href="https://www.linkedin.com/in/sounny/" target="_blank" className="flex items-center gap-2 px-4 py-2 glass rounded-full text-xs font-bold hover:bg-primary hover:text-black transition-all">
+                                        <i data-lucide="briefcase" className="w-4 h-4"></i> LinkedIn
+                                    </a>
+                                    <a href="https://repositories.lib.utexas.edu/items/98d7d40f-c995-4685-83ff-4da72011b083" target="_blank" className="flex items-center gap-2 px-4 py-2 glass rounded-full text-xs font-bold hover:bg-secondary hover:text-white transition-all">
+                                        <i data-lucide="globe" className="w-4 h-4"></i> Research
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
                     {/* Categories Grid */}
                     <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-8">
                         <CategoryCard 
                             icon="map" 
                             title="BeautifulFans" 
-                            desc="Interactive high-resolution satellite imagery explorer for the world's most prominent megafans."
+                            desc="Interactive high-resolution satellite imagery explorer for global fluvial systems."
                             onClick={() => setView('imagery')}
                         />
                         <CategoryCard 
                             icon="graduation-cap" 
                             title="Academic Archive" 
-                            desc="Access Dr. Sounny's PhD work and foundational datasets on fluvial geomorphology."
+                            desc="Access foundational PhD research and multi-decadal megafan datasets."
                             href="#research"
                         />
                         <CategoryCard 
                             icon="book-open" 
                             title="Publications" 
-                            desc="Review published chapters and articles including the Chaco Megafans assessment."
+                            desc="Review published assessments including the Cambridge assessment of the Rio Grande."
                             href="#research"
                         />
                     </section>
