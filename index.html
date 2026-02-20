@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Megafan Labs | Lead Researcher: Dr. Sounny</title>
+    <title>Megafan Observatory | Lead Researcher: Dr. Sounny</title>
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Megafan Labs: Central research hub for Fluvial Megafans studies, lead by Dr. Sounny. Featuring PhD research, publications, and the BeautifulFans imagery explorer.">
+    <meta name="description" content="Megafan Observatory: Advancing the geomorphology and understanding of megafans through Earth Observation. Led by Dr. Sounny.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,6 @@
                         bg: '#0a0a0f',
                         primary: '#00d2ff',
                         secondary: '#3a7bd5',
-                        slate_blue: '#0f172a',
                     }
                 }
             }
@@ -70,8 +69,8 @@
             pointer-events: none;
             z-index: -1;
         }
-        #map { height: 100%; width: 100%; border-radius: 1rem; }
-        .leaflet-container { background: #0a0a0f !important; }
+        #map { height: 100%; width: 100%; }
+        .leaflet-container { background: #0a0a0f !important; border-radius: 1.5rem; }
         
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
@@ -89,9 +88,12 @@
             color: #00d2ff;
         }
 
-        .profile-border {
+        .profile-image-circle {
             border: 3px solid #00d2ff;
             box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 9999px;
         }
     </style>
 </head>
@@ -145,11 +147,11 @@
                     <nav className="glass sticky top-0 z-[2000] px-6 py-4">
                         <div className="max-w-7xl mx-auto flex justify-between items-center">
                             <div className="font-heading font-extrabold text-2xl cursor-pointer" onClick={() => setView('hub')}>
-                                MEGAFAN<span className="text-primary tracking-widest ml-1">LABS</span>
+                                MEGAFAN<span className="text-primary tracking-widest ml-1">OBSERVATORY</span>
                             </div>
                             <div className="flex gap-6 items-center">
-                                <button onClick={() => setView('hub')} className={`text-sm font-bold transition-colors ${view === 'hub' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>THE HUB</button>
-                                <button onClick={() => setView('imagery')} className={`text-sm font-bold transition-colors ${view === 'imagery' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>BEAUTIFUL FANS</button>
+                                <button onClick={() => setView('hub')} className={`text-sm font-bold transition-colors ${view === 'hub' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>STATION</button>
+                                <button onClick={() => setView('imagery')} className={`text-sm font-bold transition-colors ${view === 'imagery' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>OBSERVATIONS</button>
                                 <a href="https://github.com/sounny/megafans" target="_blank" className="text-gray-400 hover:text-white"><i data-lucide="github" className="w-5 h-5"></i></a>
                             </div>
                         </div>
@@ -159,7 +161,7 @@
 
                     {/* Footer */}
                     <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm mt-auto">
-                        <p>© {new Date().getFullYear()} Dr. Moulay Anwar Sounny-Slitine. Megafan Labs.</p>
+                        <p>© {new Date().getFullYear()} Dr. Moulay Anwar Sounny-Slitine. Megafan Observatory.</p>
                     </footer>
                 </div>
             );
@@ -174,34 +176,34 @@
                     <header className="relative pt-24 pb-12 px-6 text-center overflow-hidden">
                         <div className="hero-glow"></div>
                         <h1 className="text-6xl md:text-8xl font-heading font-extrabold tracking-tighter mb-4 gradient-text">
-                            Megafan Labs
+                            Megafan Observatory
                         </h1>
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-                            Advancing the frontiers of fluvial geomorphology and Earth observation.
+                            Advancing the geomorphology and understanding of megafans through Earth Observation.
                         </p>
                     </header>
 
-                    {/* Lead Researcher Card - Inspired by storymap */}
+                    {/* Lead Researcher Card */}
                     <section className="max-w-4xl mx-auto px-6 mb-24">
                         <div className="glass p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 border border-white/10">
-                            <div className="relative">
+                            <div className="flex-shrink-0">
                                 <img 
                                     src="https://sounny.github.io/storymap/assets/instructor.png" 
-                                    className="w-32 h-32 md:w-40 md:h-40 rounded-full profile-border object-cover" 
+                                    className="w-32 h-32 md:w-40 md:h-40 profile-image-circle" 
                                     alt="Dr. Sounny"
                                 />
                             </div>
                             <div className="text-center md:text-left">
-                                <span className="text-primary font-bold tracking-[0.2em] text-xs mb-2 block">LEAD RESEARCHER</span>
+                                <span className="text-primary font-bold tracking-[0.2em] text-xs mb-2 block uppercase">Chief Scientist</span>
                                 <h2 className="text-4xl font-heading font-extrabold mb-4">Dr. Sounny</h2>
                                 <p className="text-gray-400 leading-relaxed mb-6 italic">
-                                    "Dr. Sounny is a leading expert in Geospatial Science and Technology, dedicated to making complex GIS concepts accessible to all. Through Megafan Labs, he bridges the gap between physical geography and social impact."
+                                    "Dr. Sounny is a leading expert in Geospatial Science and Technology, dedicated to making complex GIS concepts accessible to all. Through the Megafan Observatory, he integrates multi-sensor satellite data to bridge the gap between physical geography and social impact."
                                 </p>
                                 <div className="flex justify-center md:justify-start gap-4">
-                                    <a href="https://www.linkedin.com/in/sounny/" target="_blank" className="flex items-center gap-2 px-4 py-2 glass rounded-full text-xs font-bold hover:bg-primary hover:text-black transition-all">
-                                        <i data-lucide="briefcase" className="w-4 h-4"></i> LinkedIn
+                                    <a href="https://www.linkedin.com/in/sounny/" target="_blank" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-primary hover:text-black transition-all">
+                                        <i data-lucide="linkedin" className="w-4 h-4"></i> LinkedIn
                                     </a>
-                                    <a href="https://repositories.lib.utexas.edu/items/98d7d40f-c995-4685-83ff-4da72011b083" target="_blank" className="flex items-center gap-2 px-4 py-2 glass rounded-full text-xs font-bold hover:bg-secondary hover:text-white transition-all">
+                                    <a href="https://repositories.lib.utexas.edu/items/98d7d40f-c995-4685-83ff-4da72011b083" target="_blank" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-secondary hover:text-white transition-all">
                                         <i data-lucide="globe" className="w-4 h-4"></i> Research
                                     </a>
                                 </div>
@@ -212,21 +214,21 @@
                     {/* Categories Grid */}
                     <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-8">
                         <CategoryCard 
-                            icon="map" 
-                            title="BeautifulFans" 
-                            desc="Interactive high-resolution satellite imagery explorer for global fluvial systems."
+                            icon="telescope" 
+                            title="Observations" 
+                            desc="Interactive high-resolution satellite imagery explorer fueled by planetary-scale data."
                             onClick={() => setView('imagery')}
                         />
                         <CategoryCard 
-                            icon="graduation-cap" 
-                            title="Academic Archive" 
-                            desc="Access foundational PhD research and multi-decadal megafan datasets."
+                            icon="database" 
+                            title="System Archives" 
+                            desc="PhD research and multi-decadal megafan datasets cataloged for scientific inquiry."
                             href="#research"
                         />
                         <CategoryCard 
-                            icon="book-open" 
-                            title="Publications" 
-                            desc="Review published assessments including the Cambridge assessment of the Rio Grande."
+                            icon="file-text" 
+                            title="Scientific Reports" 
+                            desc="Peer-reviewed publications detailing the geomorphology of major fluvial systems."
                             href="#research"
                         />
                     </section>
@@ -234,7 +236,7 @@
                     {/* Research Section */}
                     <section id="research" className="max-w-7xl mx-auto px-6 py-20 w-full">
                         <div className="flex items-center gap-4 mb-12">
-                            <h2 className="text-4xl font-heading font-bold">Research <span className="text-secondary">Portfolio</span></h2>
+                            <h2 className="text-4xl font-heading font-bold">Scientific <span className="text-secondary">Portfolio</span></h2>
                             <div className="h-px flex-1 bg-white/10"></div>
                         </div>
 
@@ -292,11 +294,13 @@
         function ImageryView() {
             const [activeFan, setActiveFan] = useState(fansData[0]);
             const [isSuggesting, setIsSuggesting] = useState(false);
+            const mapContainerRef = useRef(null);
             const leafletMap = useRef(null);
 
             useEffect(() => {
-                if (!leafletMap.current) {
-                    leafletMap.current = L.map('map', {
+                // Ensure map initializes only once
+                if (mapContainerRef.current && !leafletMap.current) {
+                    leafletMap.current = L.map(mapContainerRef.current, {
                         center: activeFan.coords,
                         zoom: 6,
                         zoomControl: false
@@ -308,7 +312,16 @@
 
                     L.control.zoom({ position: 'bottomright' }).addTo(leafletMap.current);
                 }
+                
                 lucide.createIcons();
+                
+                // Cleanup function
+                return () => {
+                   if (leafletMap.current) {
+                       leafletMap.current.remove();
+                       leafletMap.current = null;
+                   }
+                };
             }, []);
 
             useEffect(() => {
@@ -321,14 +334,14 @@
                 <div className="max-w-7xl mx-auto px-6 py-12 w-full flex-1 flex flex-col animate-in slide-in-from-right-10 duration-500">
                     <div className="flex justify-between items-end mb-8">
                         <div>
-                            <h2 className="text-4xl font-heading font-bold">Beautiful<span className="gradient-text">Fans</span></h2>
-                            <p className="text-gray-400">High-resolution imagery of global fluvial systems.</p>
+                            <h2 className="text-4xl font-heading font-bold text-primary">Mission <span className="text-white">Observations</span></h2>
+                            <p className="text-gray-400">High-resolution Earth observation of global fluvial megafans.</p>
                         </div>
                         <button 
                             onClick={() => setIsSuggesting(true)}
                             className="px-6 py-2 glass rounded-full text-sm font-bold text-primary hover:bg-primary/10 transition-colors flex items-center gap-2"
                         >
-                            <i data-lucide="plus" className="w-4 h-4"></i> Suggest a Fan
+                            <i data-lucide="crosshair" className="w-4 h-4"></i> Coordinate Input
                         </button>
                     </div>
                     
@@ -337,7 +350,7 @@
                         <div className="w-full lg:w-80 border-r border-white/5 flex flex-col bg-black/20">
                             <div className="p-6 border-b border-white/5">
                                 <h4 className="font-bold flex items-center gap-2">
-                                    <i data-lucide="layers" className="w-5 h-5 text-primary"></i> Catalog
+                                    <i data-lucide="satellite" className="w-5 h-5 text-primary"></i> Sensor Catalog
                                 </h4>
                             </div>
                             <div className="flex-1 overflow-y-auto">
@@ -358,7 +371,7 @@
 
                         {/* Map Area */}
                         <div className="flex-1 relative">
-                            <div id="map" className="z-0"></div>
+                            <div ref={mapContainerRef} className="z-0 h-full w-full"></div>
                             <div className="absolute bottom-6 left-6 right-6 lg:right-auto lg:max-w-md z-[1000] glass p-6 rounded-2xl">
                                 <h3 className="text-xl font-bold text-primary mb-2">{activeFan.name}</h3>
                                 <p className="text-gray-300 text-sm leading-relaxed mb-4">{activeFan.description}</p>
@@ -376,14 +389,14 @@
                                 <div className="glass p-10 rounded-3xl max-w-md w-full relative">
                                     <button onClick={() => setIsSuggesting(false)} className="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x"></i></button>
                                     <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
-                                        <i data-lucide="database" className="w-8 h-8"></i>
+                                        <i data-lucide="radar" className="w-8 h-8"></i>
                                     </div>
-                                    <h3 className="text-2xl font-bold mb-4">Interactivity Roadmap</h3>
+                                    <h3 className="text-2xl font-bold mb-4">Observation Protocol</h3>
                                     <p className="text-gray-400 mb-8 leading-relaxed">
-                                        We're planning to allow users to add their own favorite fans! To save data permanently, we'll need to connect a lightweight backend like <strong>Supabase</strong> or <strong>Firebase</strong>.
+                                        We are developing a protocol to allow researchers to submit new megafan coordinates. To preserve this data, a <strong>Supabase</strong> or <strong>Firebase</strong> integration is required for the observatory's persistence layer.
                                     </p>
                                     <button onClick={() => setIsSuggesting(false)} className="w-full py-4 bg-primary text-black font-bold rounded-xl hover:scale-[1.02] transition-transform">
-                                        Got it, sounds great!
+                                        Understood
                                     </button>
                                 </div>
                             </div>
