@@ -82,6 +82,11 @@
             border-left: 4px solid #00d2ff;
             background: rgba(255, 255, 255, 0.05);
         }
+
+        .category-card:hover .category-icon {
+            transform: scale(1.1) rotate(5deg);
+            color: #00d2ff;
+        }
     </style>
 </head>
 <body class="font-sans antialiased">
@@ -126,97 +131,136 @@
         ];
 
         function App() {
+            const [view, setView] = useState('hub'); // 'hub' or 'imagery'
+
             return (
                 <div className="min-h-screen flex flex-col">
-                    {/* Hero Section */}
-                    <header className="relative py-24 px-6 text-center overflow-hidden">
-                        <div className="hero-glow"></div>
-                        <h1 className="text-6xl md:text-8xl font-heading font-extrabold tracking-tighter mb-4 gradient-text">
-                            Megafans
-                        </h1>
-                        <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
-                            A central hub for Dr. Sounny's research on fluvial megafans, exploring geomorphic evolution and planetary-scale alluvial systems.
-                        </p>
-                        <div className="flex flex-wrap justify-center gap-4">
-                            <a href="#imagery" className="px-8 py-3 bg-primary text-black font-heading font-bold rounded-full hover:scale-105 transition-transform flex items-center gap-2 shadow-[0_0_20px_rgba(0,210,255,0.3)]">
-                                <i data-lucide="map"></i> Explore Imagery
-                            </a>
-                            <a href="#research" className="px-8 py-3 glass text-primary font-heading font-bold rounded-full hover:bg-white/5 transition-colors flex items-center gap-2">
-                                <i data-lucide="book-open"></i> Publications
-                            </a>
+                    {/* Navigation */}
+                    <nav className="glass sticky top-0 z-[2000] px-6 py-4">
+                        <div className="max-w-7xl mx-auto flex justify-between items-center">
+                            <div className="font-heading font-extrabold text-2xl cursor-pointer" onClick={() => setView('hub')}>
+                                MEGA<span className="text-primary">FANS</span>
+                            </div>
+                            <div className="flex gap-6 items-center">
+                                <button onClick={() => setView('hub')} className={`text-sm font-bold transition-colors ${view === 'hub' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>THE HUB</button>
+                                <button onClick={() => setView('imagery')} className={`text-sm font-bold transition-colors ${view === 'imagery' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>BEAUTIFUL FANS</button>
+                                <a href="https://github.com/sounny/megafans" target="_blank" className="text-gray-400 hover:text-white"><i data-lucide="github" className="w-5 h-5"></i></a>
+                            </div>
                         </div>
-                    </header>
+                    </nav>
 
-                    {/* Research Section */}
-                    <section id="research" className="max-w-7xl mx-auto px-6 py-20 w-full">
-                        <div className="flex items-center gap-4 mb-12">
-                            <h2 className="text-4xl font-heading font-bold">Core <span className="text-secondary">Research</span></h2>
-                            <div className="h-px flex-1 bg-white/10"></div>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-8">
-                            {/* Phd Card */}
-                            <a href="https://repositories.lib.utexas.edu/items/98d7d40f-c995-4685-83ff-4da72011b083" target="_blank" className="glass p-8 rounded-2xl group hover:border-primary/30 transition-all cursor-pointer">
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className="p-3 bg-secondary/20 rounded-xl text-secondary group-hover:bg-primary/20 group-hover:text-primary transition-colors">
-                                        <i data-lucide="graduation-cap" className="w-8 h-8"></i>
-                                    </div>
-                                    <i data-lucide="external-link" className="text-gray-600"></i>
-                                </div>
-                                <h3 className="text-2xl font-bold mb-3">PhD Dissertation</h3>
-                                <p className="text-gray-400 mb-6">
-                                    Exploring the geomorphology and environmental impacts of megafans through multi-decadal analysis and remote sensing.
-                                </p>
-                                <span className="text-primary font-bold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                                    Read Repository <i data-lucide="arrow-right" className="w-4 h-4"></i>
-                                </span>
-                            </a>
-
-                            {/* Book Card */}
-                            <a href="https://www.cambridge.org/core/books/fluvial-megafans-on-earth-and-mars/018FB3BEF111A9251ED5C3134BA59D14" target="_blank" className="glass p-8 rounded-2xl group hover:border-primary/30 transition-all cursor-pointer">
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className="p-3 bg-primary/10 rounded-xl text-primary">
-                                        <i data-lucide="book" className="w-8 h-8"></i>
-                                    </div>
-                                    <i data-lucide="external-link" className="text-gray-600"></i>
-                                </div>
-                                <h3 className="text-2xl font-bold mb-3">Chaco Megafans Assessment</h3>
-                                <p className="text-gray-400 mb-6">
-                                    Chapter 5 in "Fluvial Megafans on Earth and Mars" (Cambridge University Press). Assessment of aggradation patterns on the Rio Grande.
-                                </p>
-                                <span className="text-primary font-bold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                                    View Publication <i data-lucide="arrow-right" className="w-4 h-4"></i>
-                                </span>
-                            </a>
-                        </div>
-                    </section>
-
-                    {/* Imagery Section (BeautifulFans) */}
-                    <section id="imagery" className="max-w-7xl mx-auto px-6 py-20 w-full flex-1 flex flex-col">
-                        <div className="flex items-center gap-4 mb-4">
-                            <h2 className="text-4xl font-heading font-bold">Beautiful<span className="gradient-text">Fans</span></h2>
-                            <div className="h-px flex-1 bg-white/10"></div>
-                        </div>
-                        <p className="text-gray-400 mb-10">Interactive imagery explorer powered by Esri World Imagery.</p>
-                        
-                        <BeautifulFansApp />
-                    </section>
+                    {view === 'hub' ? <HubView setView={setView} /> : <ImageryView />}
 
                     {/* Footer */}
-                    <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
+                    <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm mt-auto">
                         <p>© {new Date().getFullYear()} Dr. Moulay Anwar Sounny-Slitine. Megafans Research Project.</p>
                     </footer>
                 </div>
             );
         }
 
-        function BeautifulFansApp() {
+        function HubView({ setView }) {
+            useEffect(() => { lucide.createIcons(); }, []);
+
+            return (
+                <div className="animate-in fade-in duration-700">
+                    {/* Hero Section */}
+                    <header className="relative py-24 px-6 text-center overflow-hidden">
+                        <div className="hero-glow"></div>
+                        <h1 className="text-6xl md:text-8xl font-heading font-extrabold tracking-tighter mb-4 gradient-text">
+                            Megafans Hub
+                        </h1>
+                        <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                            A central repository spanning PhD research, planetary geomorphology, and interactive Earth observation.
+                        </p>
+                    </header>
+
+                    {/* Categories Grid */}
+                    <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-8">
+                        <CategoryCard 
+                            icon="map" 
+                            title="BeautifulFans" 
+                            desc="Interactive high-resolution satellite imagery explorer for the world's most prominent megafans."
+                            onClick={() => setView('imagery')}
+                        />
+                        <CategoryCard 
+                            icon="graduation-cap" 
+                            title="Academic Archive" 
+                            desc="Access Dr. Sounny's PhD work and foundational datasets on fluvial geomorphology."
+                            href="#research"
+                        />
+                        <CategoryCard 
+                            icon="book-open" 
+                            title="Publications" 
+                            desc="Review published chapters and articles including the Chaco Megafans assessment."
+                            href="#research"
+                        />
+                    </section>
+
+                    {/* Research Section */}
+                    <section id="research" className="max-w-7xl mx-auto px-6 py-20 w-full">
+                        <div className="flex items-center gap-4 mb-12">
+                            <h2 className="text-4xl font-heading font-bold">Research <span className="text-secondary">Portfolio</span></h2>
+                            <div className="h-px flex-1 bg-white/10"></div>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <PublicationCard 
+                                icon="graduation-cap"
+                                title="PhD Dissertation"
+                                desc="Comprehensive analysis of megafan geomorphology and environmental impacts using multi-decadal remote sensing."
+                                link="https://repositories.lib.utexas.edu/items/98d7d40f-c995-4685-83ff-4da72011b083"
+                            />
+                            <PublicationCard 
+                                icon="book"
+                                title="Fluvial Megafans on Earth and Mars"
+                                desc="Chapter 5: Assessment of aggradation patterns on the Rio Grande (Guapay) megafan, Eastern Bolivia."
+                                link="https://www.cambridge.org/core/books/fluvial-megafans-on-earth-and-mars/018FB3BEF111A9251ED5C3134BA59D14"
+                            />
+                        </div>
+                    </section>
+                </div>
+            );
+        }
+
+        function CategoryCard({ icon, title, desc, onClick, href }) {
+            const Content = () => (
+                <div className="glass p-10 rounded-3xl category-card hover:border-primary/40 transition-all cursor-pointer h-full group">
+                    <div className="text-gray-500 mb-8 category-icon transition-transform duration-500">
+                        <i data-lucide={icon} className="w-12 h-12"></i>
+                    </div>
+                    <h3 className="text-3xl font-heading font-bold mb-4 group-hover:text-primary transition-colors">{title}</h3>
+                    <p className="text-gray-400 leading-relaxed">{desc}</p>
+                </div>
+            );
+
+            return href ? <a href={href} className="block"><Content /></a> : <div onClick={onClick}><Content /></div>;
+        }
+
+        function PublicationCard({ icon, title, desc, link }) {
+            return (
+                <a href={link} target="_blank" className="glass p-8 rounded-2xl group hover:border-primary/30 transition-all cursor-pointer block">
+                    <div className="flex justify-between items-start mb-6">
+                        <div className="p-3 bg-secondary/20 rounded-xl text-secondary group-hover:bg-primary/20 group-hover:text-primary transition-colors">
+                            <i data-lucide={icon} className="w-8 h-8"></i>
+                        </div>
+                        <i data-lucide="external-link" className="text-gray-600"></i>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-3">{title}</h3>
+                    <p className="text-gray-400 mb-6">{desc}</p>
+                    <span className="text-primary font-bold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Access <i data-lucide="arrow-right" className="w-4 h-4"></i>
+                    </span>
+                </a>
+            );
+        }
+
+        function ImageryView() {
             const [activeFan, setActiveFan] = useState(fansData[0]);
-            const mapRef = useRef(null);
+            const [isSuggesting, setIsSuggesting] = useState(false);
             const leafletMap = useRef(null);
 
             useEffect(() => {
-                // Initialize Map
                 if (!leafletMap.current) {
                     leafletMap.current = L.map('map', {
                         center: activeFan.coords,
@@ -225,13 +269,11 @@
                     });
 
                     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+                        attribution: 'Tiles &copy; Esri'
                     }).addTo(leafletMap.current);
 
                     L.control.zoom({ position: 'bottomright' }).addTo(leafletMap.current);
                 }
-
-                // Initial lucide icons
                 lucide.createIcons();
             }, []);
 
@@ -242,48 +284,76 @@
             }, [activeFan]);
 
             return (
-                <div className="glass rounded-3xl overflow-hidden flex flex-col lg:flex-row h-[700px]">
-                    {/* Sidebar */}
-                    <div className="w-full lg:w-80 border-r border-white/5 flex flex-col bg-black/20">
-                        <div className="p-6 border-b border-white/5">
-                            <h4 className="font-bold flex items-center gap-2">
-                                <i data-lucide="layers" className="w-5 h-5 text-primary"></i> Selected Fans
-                            </h4>
+                <div className="max-w-7xl mx-auto px-6 py-12 w-full flex-1 flex flex-col animate-in slide-in-from-right-10 duration-500">
+                    <div className="flex justify-between items-end mb-8">
+                        <div>
+                            <h2 className="text-4xl font-heading font-bold">Beautiful<span className="gradient-text">Fans</span></h2>
+                            <p className="text-gray-400">High-resolution imagery of global fluvial systems.</p>
                         </div>
-                        <div className="flex-1 overflow-y-auto">
-                            {fansData.map(fan => (
-                                <div 
-                                    key={fan.id}
-                                    onClick={() => setActiveFan(fan)}
-                                    className={`fan-item p-6 cursor-pointer transition-all hover:bg-white/5 ${activeFan.id === fan.id ? 'active' : ''}`}
-                                >
-                                    <h5 className="font-bold text-lg mb-1">{fan.name}</h5>
-                                    <p className="text-sm text-gray-400 flex items-center gap-1">
-                                        <i data-lucide="map-pin" className="w-3 h-3"></i> {fan.location}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
+                        <button 
+                            onClick={() => setIsSuggesting(true)}
+                            className="px-6 py-2 glass rounded-full text-sm font-bold text-primary hover:bg-primary/10 transition-colors flex items-center gap-2"
+                        >
+                            <i data-lucide="plus" className="w-4 h-4"></i> Suggest a Fan
+                        </button>
                     </div>
-
-                    {/* Map Content */}
-                    <div className="flex-1 relative">
-                        <div id="map" className="z-0"></div>
-                        
-                        {/* Info Overlay */}
-                        <div className="absolute bottom-6 left-6 right-6 lg:right-auto lg:max-w-md z-[1000] glass p-6 rounded-2xl animate-in fade-in slide-in-from-bottom-4 duration-500">
-                            <h3 className="text-xl font-bold text-primary mb-2">{activeFan.name}</h3>
-                            <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                                {activeFan.description}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                                {activeFan.tags.map(tag => (
-                                    <span key={tag} className="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">
-                                        {tag}
-                                    </span>
+                    
+                    <div className="glass rounded-3xl overflow-hidden flex flex-col lg:flex-row h-[700px] relative">
+                        {/* Sidebar */}
+                        <div className="w-full lg:w-80 border-r border-white/5 flex flex-col bg-black/20">
+                            <div className="p-6 border-b border-white/5">
+                                <h4 className="font-bold flex items-center gap-2">
+                                    <i data-lucide="layers" className="w-5 h-5 text-primary"></i> Catalog
+                                </h4>
+                            </div>
+                            <div className="flex-1 overflow-y-auto">
+                                {fansData.map(fan => (
+                                    <div 
+                                        key={fan.id}
+                                        onClick={() => setActiveFan(fan)}
+                                        className={`fan-item p-6 cursor-pointer transition-all hover:bg-white/5 ${activeFan.id === fan.id ? 'active' : ''}`}
+                                    >
+                                        <h5 className="font-bold text-lg mb-1">{fan.name}</h5>
+                                        <p className="text-sm text-gray-400 flex items-center gap-1">
+                                            <i data-lucide="map-pin" className="w-3 h-3"></i> {fan.location}
+                                        </p>
+                                    </div>
                                 ))}
                             </div>
                         </div>
+
+                        {/* Map Area */}
+                        <div className="flex-1 relative">
+                            <div id="map" className="z-0"></div>
+                            <div className="absolute bottom-6 left-6 right-6 lg:right-auto lg:max-w-md z-[1000] glass p-6 rounded-2xl">
+                                <h3 className="text-xl font-bold text-primary mb-2">{activeFan.name}</h3>
+                                <p className="text-gray-300 text-sm leading-relaxed mb-4">{activeFan.description}</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {activeFan.tags.map(tag => (
+                                        <span key={tag} className="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full">{tag}</span>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Suggestion Modal Overlay */}
+                        {isSuggesting && (
+                            <div className="absolute inset-0 z-[2000] bg-black/80 backdrop-blur-sm flex items-center justify-center p-6 text-center animate-in fade-in duration-300">
+                                <div className="glass p-10 rounded-3xl max-w-md w-full relative">
+                                    <button onClick={() => setIsSuggesting(false)} className="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x"></i></button>
+                                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
+                                        <i data-lucide="database" className="w-8 h-8"></i>
+                                    </div>
+                                    <h3 className="text-2xl font-bold mb-4">Interactivity Roadmap</h3>
+                                    <p className="text-gray-400 mb-8 leading-relaxed">
+                                        We're planning to allow users to add their own favorite fans! To save data permanently, we'll need to connect a lightweight backend like <strong>Supabase</strong> or <strong>Firebase</strong>.
+                                    </p>
+                                    <button onClick={() => setIsSuggesting(false)} className="w-full py-4 bg-primary text-black font-bold rounded-xl hover:scale-[1.02] transition-transform">
+                                        Got it, sounds great!
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             );
@@ -291,8 +361,6 @@
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
-
-        // Re-run lucide on late loads
         setTimeout(() => lucide.createIcons(), 1000);
     </script>
 </body>
