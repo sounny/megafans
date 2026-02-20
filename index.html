@@ -205,6 +205,7 @@
                 name: 'Pilcomayo Megafan',
                 location: 'Bolivia/Paraguay',
                 coords: [-22.0, -62.0],
+                imageUrl: 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/148000/148755/parana_sts055_lrg.jpg',
                 description: 'The largest known megafan on Earth at 705 km long, formed by the Pilcomayo River spreading laterally after exiting the Andes. It creates a vast triangular sediment surface with radiating paleochannels.',
                 sensor: 'Hasselblad Camera',
                 tags: ['World\'s Largest', 'Chaco Region', 'Andean Foreland']
@@ -395,6 +396,7 @@
         function ImageryView() {
             const [activeFan, setActiveFan] = useState(fansData[0]);
             const [isSuggesting, setIsSuggesting] = useState(false);
+            const [lightboxOpen, setLightboxOpen] = useState(false);
             const mapContainerRef = useRef(null);
             const leafletMap = useRef(null);
 
@@ -475,10 +477,16 @@
                             <div ref={mapContainerRef} className="z-0 h-full w-full"></div>
                             <div className="absolute bottom-6 left-6 right-6 lg:right-auto lg:max-w-md z-[1000] glass p-0 rounded-2xl overflow-hidden shadow-2xl">
                                 {activeFan.imageUrl && (
-                                    <div className="w-full h-48 overflow-hidden border-b border-white/10 relative">
-                                        <img src={activeFan.imageUrl} className="w-full h-full object-cover" alt={activeFan.name} />
+                                    <div 
+                                        className="w-full h-48 overflow-hidden border-b border-white/10 relative cursor-pointer group"
+                                        onClick={() => setLightboxOpen(true)}
+                                    >
+                                        <img src={activeFan.imageUrl} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt={activeFan.name} />
+                                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                            <i data-lucide="zoom-in" className="w-8 h-8 text-white"></i>
+                                        </div>
                                         {activeFan.sensor && (
-                                            <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-primary border border-white/10 uppercase tracking-tighter">
+                                            <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-primary border border-white/10 uppercase tracking-tighter z-10">
                                                 {activeFan.sensor}
                                             </div>
                                         )}
@@ -515,6 +523,33 @@
                             </div>
                         )}
                     </div>
+
+                    {/* Image Gallery / Lightbox Overlay */}
+                    {lightboxOpen && activeFan.imageUrl && (
+                        <div 
+                            className="fixed inset-0 z-[4000] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 lg:p-12 animate-in fade-in zoom-in-95 duration-300 cursor-zoom-out"
+                            onClick={() => setLightboxOpen(false)}
+                        >
+                            <button 
+                                onClick={() => setLightboxOpen(false)} 
+                                className="absolute top-6 right-6 text-white/50 hover:text-white bg-black/50 hover:bg-black/80 rounded-full p-2 transition-all z-[4010]"
+                            >
+                                <i data-lucide="x" className="w-6 h-6"></i>
+                            </button>
+                            <img 
+                                src={activeFan.imageUrl} 
+                                className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl ring-1 ring-white/10" 
+                                alt={activeFan.name} 
+                                onClick={(e) => e.stopPropagation()}
+                            />
+                            {activeFan.sensor && (
+                                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/80 backdrop-blur-md flex items-center gap-2 rounded-full border border-white/10 text-white text-xs font-bold uppercase tracking-widest shadow-2xl">
+                                    <i data-lucide="satellite" className="w-4 h-4 text-primary"></i> 
+                                    Captured by {activeFan.sensor}
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             );
         }
