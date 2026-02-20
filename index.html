@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Megafans Observatory | Lead Researcher: Dr. Sounny</title>
+    <title>Megafans Observatory | Lead Researcher: Moulay Anwar Sounny-Slitine, PhD</title>
     <!-- SEO Meta Tags -->
     <meta name="description" content="Megafans Observatory: Advancing the geomorphology and understanding of megafans through Earth Observation. Led by Dr. Sounny.">
     
@@ -15,8 +15,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Leaflet CSS -->
+    <!-- Leaflet CSS & JS - Loading early -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     
     <!-- React & Babel for CDN -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -56,6 +57,7 @@
         }
         .gradient-text {
             background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -116,9 +118,70 @@
                 id: 'kosi',
                 name: 'Kosi Megafan',
                 location: 'Bihar, India / Nepal',
-                coords: [26.45, 86.85],
-                description: 'One of the largest alluvial fans in the world, the Kosi megafan is famous for its rapid westward migration and catastrophic flooding events.',
-                tags: ['Himalayan', 'Migrating Channel', 'High Sediment']
+                coords: [26.45, 86.95],
+                imageUrl: 'https://www.iitk.ac.in/gangetic/alluvial/kosi_big.jpg',
+                description: 'Recognized as the largest "wet" alluvial megafan in the world. The Kosi River is a high-energy, mountain-fed system with a braided morphology and high sediment load, migrating over 110 km in 250 years.',
+                sensor: 'IRS 1-C',
+                tags: ['World\'s Largest Wet Fan', 'Himalayan', 'Active Migration']
+            },
+            {
+                id: 'parana',
+                name: 'Parana Megafan',
+                location: 'Argentina/Paraguay',
+                coords: [-28.1, -58.5],
+                imageUrl: 'public/assets/parana_nasa.jpg',
+                description: 'A massive alluvial feature identified by NASA Earth Observatory. This "fossil" megafan was created by the migration of the Parana River and is recognized for its distinctive fan-shaped arrangement of ancient channels.',
+                sensor: 'Hasselblad / Landsat',
+                tags: ['NASA Featured', 'Fossil Megafan', 'Chaco Region']
+            },
+            {
+                id: 'southern-iran',
+                name: 'Southern Iran Fan',
+                location: 'Fars Province, Iran',
+                coords: [28.6, 54.3],
+                imageUrl: 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/36000/36041/alluvialfan_ast_2004286_lrg.jpg',
+                description: 'A dry river channel in the Zagros Mountains forms a silvery alluvial fan. The proximity of the water table allows for a belt of lush agricultural land to thrive along the fan\'s curve.',
+                sensor: 'ASTER (Terra)',
+                tags: ['Zagros Mountains', 'Agricultural Belt', 'Silvery Appearance']
+            },
+            {
+                id: 'kazakhstan',
+                name: 'Kazakhstan Fan',
+                location: 'Almaty, Kazakhstan',
+                coords: [46.1, 81.6],
+                imageUrl: 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/83000/83455/kazakhstanfan_oli_2013252_lrg.jpg',
+                description: 'Located in the Alakol basin, this fan is created as a mountain stream emerges from narrow peaks. The intricate network of interlacing channels creates fertile landforms in the basin.',
+                sensor: 'OLI (Landsat 8)',
+                tags: ['Alakol Basin', 'Intricate Channels', 'Mountain Stream']
+            },
+            {
+                id: 'western-china',
+                name: 'Western China Fan',
+                location: 'Xinjiang, China',
+                coords: [37.4, 84.3],
+                imageUrl: 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/4000/4008/aster_artII_alluvial_lrg.jpg',
+                description: 'Situated at the edge of the Taklimakan Desert, this fan features active channels appearing in vivid electric blue. The braided streams eventually vanish into the desert sands.',
+                sensor: 'ASTER (Terra)',
+                tags: ['Taklimakan Desert', 'Electric Blue', 'Braided Streams']
+            },
+            {
+                id: 'tsaidam-basin',
+                name: 'Tsaidam Basin Fan',
+                location: 'Qinghai, China',
+                coords: [37.5, 94.2],
+                imageUrl: 'https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA11067.jpg',
+                description: 'Formed by the Xi Taijnar He river descending from the Tibetan Plateau. The massive sediment build-up forces the river to bifurcate into multiple segments feeding two significant lakes.',
+                sensor: 'Electronic Still Camera',
+                tags: ['Tibetan Plateau', 'Bifurcation', 'Tsaidam Basin']
+            },
+            {
+                id: 'maniqui',
+                name: 'Maniqui River Megafan',
+                location: 'Eastern Bolivia',
+                coords: [-17.5, -62.5],
+                description: 'This fluvial megafan features one of the highest avulsion rates observed, with repeated channel shifts creating a dense network of abandoned channels covering 95%+ of its surface.',
+                sensor: 'Landsat / SRTM',
+                tags: ['High Avulsion', 'Andean Foreland', 'Abandoned Channels']
             },
             {
                 id: 'okavango',
@@ -129,21 +192,13 @@
                 tags: ['Inland Delta', 'Kalahari', 'Pristine']
             },
             {
-                id: 'taquari',
-                name: 'Taquari Megafan',
-                location: 'Pantanal, Brazil',
-                coords: [-18.5, -56.5],
-                description: 'Located in the Pantanal wetland, this megafan shows fascinating patterns of lobe abandonment and vegetation-controlled geomorphology.',
-                tags: ['Pantanal', 'Wetland', 'Lobe Switch']
-            },
-            {
-                id: 'parana',
-                name: 'Parana Megafan',
-                location: 'Argentina/Paraguay',
-                coords: [-28.1, -58.5],
-                imageUrl: 'public/assets/parana_nasa.jpg',
-                description: 'A massive alluvial feature identified by NASA Earth Observatory. This "fossil" megafan was created by the migration of the Parana River and is recognized for its distinctive fan-shaped arrangement of ancient channels.',
-                tags: ['NASA Featured', 'Fossil Megafan', 'Chaco Region']
+                id: 'gandak',
+                name: 'Gandak Megafan',
+                location: 'Bihar, India',
+                coords: [26.6, 84.8],
+                description: 'A Himalayan mountain-fed river characterized by high discharge and a braided channel pattern. Its surface is marked by numerous paleochannels that record its migration history.',
+                sensor: 'IRS 1-C',
+                tags: ['Himalayan', 'Paleochannels', 'High Discharge']
             }
         ];
 
@@ -161,6 +216,7 @@
                             <div className="flex gap-6 items-center">
                                 <button onClick={() => setView('hub')} className={`text-sm font-bold transition-colors ${view === 'hub' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>STATION</button>
                                 <button onClick={() => setView('imagery')} className={`text-sm font-bold transition-colors ${view === 'imagery' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>OBSERVATIONS</button>
+                                <a href="#research" onClick={() => setView('hub')} className={`text-sm font-bold transition-colors text-gray-400 hover:text-white`}>RESEARCH</a>
                                 <a href="https://github.com/sounny/megafans" target="_blank" className="text-gray-400 hover:text-white"><i data-lucide="github" className="w-5 h-5"></i></a>
                             </div>
                         </div>
@@ -170,7 +226,7 @@
 
                     {/* Footer */}
                     <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm mt-auto">
-                        <p>© {new Date().getFullYear()} Dr. Moulay Anwar Sounny-Slitine. Megafans Observatory.</p>
+                        <p>© {new Date().getFullYear()} Moulay Anwar Sounny-Slitine, PhD. Megafans Observatory.</p>
                     </footer>
                 </div>
             );
@@ -191,34 +247,6 @@
                             Advancing the geomorphology and understanding of megafans through Earth Observation.
                         </p>
                     </header>
-
-                    {/* Lead Researcher Card */}
-                    <section className="max-w-4xl mx-auto px-6 mb-24">
-                        <div className="glass p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 border border-white/10">
-                            <div className="flex-shrink-0">
-                                <img 
-                                    src="https://sounny.github.io/storymap/assets/instructor.png" 
-                                    className="w-32 h-32 md:w-40 md:h-40 profile-image-circle" 
-                                    alt="Dr. Sounny"
-                                />
-                            </div>
-                            <div className="text-center md:text-left">
-                                <span className="text-primary font-bold tracking-[0.2em] text-xs mb-2 block uppercase">Chief Scientist</span>
-                                <h2 className="text-4xl font-heading font-extrabold mb-4">Dr. Sounny</h2>
-                                <p className="text-gray-400 leading-relaxed mb-6 italic">
-                                    "Dr. Sounny is a leading expert in Geospatial Science and Technology, dedicated to making complex GIS concepts accessible to all. Through the Megafans Observatory, he integrates multi-sensor satellite data to bridge the gap between physical geography and social impact."
-                                </p>
-                                <div className="flex justify-center md:justify-start gap-4">
-                                    <a href="https://www.linkedin.com/in/sounny/" target="_blank" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-primary hover:text-black transition-all">
-                                        <i data-lucide="linkedin" className="w-4 h-4"></i> LinkedIn
-                                    </a>
-                                    <a href="https://repositories.lib.utexas.edu/items/98d7d40f-c995-4685-83ff-4da72011b083" target="_blank" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-secondary hover:text-white transition-all">
-                                        <i data-lucide="globe" className="w-4 h-4"></i> Research
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
 
                     {/* Categories Grid */}
                     <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-8">
@@ -249,7 +277,7 @@
                             <div className="h-px flex-1 bg-white/10"></div>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-8">
+                        <div className="grid md:grid-cols-2 gap-8 mb-24">
                             <PublicationCard 
                                 icon="graduation-cap"
                                 title="PhD Dissertation"
@@ -262,6 +290,34 @@
                                 desc="Chapter 5: Assessment of aggradation patterns on the Rio Grande (Guapay) megafan, Eastern Bolivia."
                                 link="https://www.cambridge.org/core/books/fluvial-megafans-on-earth-and-mars/018FB3BEF111A9251ED5C3134BA59D14"
                             />
+                        </div>
+
+                        {/* Profile Section at the Bottom */}
+                        <div className="max-w-4xl mx-auto">
+                            <div className="glass p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 border border-white/10">
+                                <div className="flex-shrink-0">
+                                    <img 
+                                        src="https://sounny.github.io/storymap/assets/instructor.png" 
+                                        className="w-32 h-32 md:w-40 md:h-40 profile-image-circle" 
+                                        alt="Dr. Sounny"
+                                    />
+                                </div>
+                                <div className="text-center md:text-left">
+                                    <span className="text-primary font-bold tracking-[0.2em] text-xs mb-2 block uppercase">Dr Sounny</span>
+                                    <h2 className="text-4xl font-heading font-extrabold mb-4 text-white">Moulay Anwar Sounny-Slitine, PhD</h2>
+                                    <p className="text-gray-400 leading-relaxed mb-6 italic">
+                                        Dr. Sounny is a leading expert in Geospatial Science and Technology, dedicated to making complex GIS concepts accessible to all. Through the Megafans Observatory, he integrates multi-sensor satellite data to bridge the gap between physical geography and social impact.
+                                    </p>
+                                    <div className="flex justify-center md:justify-start gap-4">
+                                        <a href="https://www.linkedin.com/in/sounny/" target="_blank" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-primary hover:text-black transition-all">
+                                            <i data-lucide="linkedin" className="w-4 h-4"></i> LinkedIn
+                                        </a>
+                                        <a href="https://sounny.github.io" target="_blank" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-secondary hover:text-white transition-all">
+                                            <i data-lucide="globe" className="w-4 h-4"></i> sounny.github.io
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -307,8 +363,8 @@
             const leafletMap = useRef(null);
 
             useEffect(() => {
-                // Ensure map initializes only once
-                if (mapContainerRef.current && !leafletMap.current) {
+                // Ensure Leaflet is loaded and container exists
+                if (typeof L !== 'undefined' && mapContainerRef.current && !leafletMap.current) {
                     leafletMap.current = L.map(mapContainerRef.current, {
                         center: activeFan.coords,
                         zoom: 6,
@@ -383,8 +439,13 @@
                             <div ref={mapContainerRef} className="z-0 h-full w-full"></div>
                             <div className="absolute bottom-6 left-6 right-6 lg:right-auto lg:max-w-md z-[1000] glass p-0 rounded-2xl overflow-hidden shadow-2xl">
                                 {activeFan.imageUrl && (
-                                    <div className="w-full h-48 overflow-hidden border-b border-white/10">
+                                    <div className="w-full h-48 overflow-hidden border-b border-white/10 relative">
                                         <img src={activeFan.imageUrl} className="w-full h-full object-cover" alt={activeFan.name} />
+                                        {activeFan.sensor && (
+                                            <div className="absolute bottom-3 right-3 px-2 py-1 bg-black/60 backdrop-blur-md rounded text-[10px] font-bold text-primary border border-white/10 uppercase tracking-tighter">
+                                                {activeFan.sensor}
+                                            </div>
+                                        )}
                                     </div>
                                 )}
                                 <div className="p-6">
