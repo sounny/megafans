@@ -1,0 +1,140 @@
+[
+  {
+    "id": "rio-grande",
+    "name": "Rio Grande (Guapay) Megafan",
+    "location": "Santa Cruz, Bolivia",
+    "coords": [-17.4364, -63.1812],
+    "description": "The Rio Grande (Guapay) megafan is an exceptional example of a large fluvial system in the Chaco plain. Dr. Sounny's work assesses its geomorphic and chronological aggradation patterns.",
+    "tags": ["Chaco Plain", "Active Avulsion", "Holocene"]
+  },
+  {
+    "id": "kosi",
+    "name": "Kosi Megafan",
+    "location": "Bihar, India / Nepal",
+    "coords": [26.45, 86.95],
+    "imageUrl": "public/assets/kosi.jpg",
+    "imageSource": "IIT Kanpur",
+    "description": "Recognized as the largest \"wet\" alluvial megafan in the world. The Kosi River is a high-energy, mountain-fed system with a braided morphology and high sediment load, migrating over 110 km in 250 years.",
+    "sensor": "IRS 1-C",
+    "tags": ["World's Largest Wet Fan", "Himalayan", "Active Migration"]
+  },
+  {
+    "id": "parana",
+    "name": "Parana Megafan",
+    "location": "Argentina/Paraguay",
+    "coords": [-28.1, -58.5],
+    "imageUrl": "public/assets/parana_nasa.jpg",
+    "imageSource": "NASA Earth Observatory",
+    "description": "A massive alluvial feature identified by NASA Earth Observatory. This \"fossil\" megafan was created by the migration of the Parana River and is recognized for its distinctive fan-shaped arrangement of ancient channels.",
+    "sensor": "Hasselblad / Landsat",
+    "tags": ["NASA Featured", "Fossil Megafan", "Chaco Region"]
+  },
+  {
+    "id": "southern-iran",
+    "name": "Southern Iran Fan",
+    "location": "Fars Province, Iran",
+    "coords": [28.6, 54.3],
+    "imageUrl": "public/assets/southern_iran.jpg",
+    "imageSource": "NASA Earth Observatory",
+    "description": "A dry river channel in the Zagros Mountains forms a silvery alluvial fan. The proximity of the water table allows for a belt of lush agricultural land to thrive along the fan's curve.",
+    "sensor": "ASTER (Terra)",
+    "tags": ["Zagros Mountains", "Agricultural Belt", "Silvery Appearance"]
+  },
+  {
+    "id": "kazakhstan",
+    "name": "Kazakhstan Fan",
+    "location": "Almaty, Kazakhstan",
+    "coords": [46.1, 81.6],
+    "imageUrl": "public/assets/kazakhstan.jpg",
+    "imageSource": "NASA Earth Observatory",
+    "description": "Located in the Alakol basin, this fan is created as a mountain stream emerges from narrow peaks. The intricate network of interlacing channels creates fertile landforms in the basin.",
+    "sensor": "OLI (Landsat 8)",
+    "tags": ["Alakol Basin", "Intricate Channels", "Mountain Stream"]
+  },
+  {
+    "id": "western-china",
+    "name": "Western China Fan",
+    "location": "Xinjiang, China",
+    "coords": [37.4, 84.3],
+    "imageUrl": "public/assets/western_china.jpg",
+    "imageSource": "NASA Earth Observatory",
+    "description": "Situated at the edge of the Taklimakan Desert, this fan features active channels appearing in vivid electric blue. The braided streams eventually vanish into the desert sands.",
+    "sensor": "ASTER (Terra)",
+    "tags": ["Taklimakan Desert", "Electric Blue", "Braided Streams"]
+  },
+  {
+    "id": "tsaidam-basin",
+    "name": "Tsaidam Basin Fan",
+    "location": "Qinghai, China",
+    "coords": [37.5, 94.2],
+    "imageUrl": "public/assets/tsaidam.jpg",
+    "imageSource": "NASA JPL",
+    "description": "Formed by the Xi Taijnar He river descending from the Tibetan Plateau. The massive sediment build-up forces the river to bifurcate into multiple segments feeding two significant lakes.",
+    "sensor": "Electronic Still Camera",
+    "tags": ["Tibetan Plateau", "Bifurcation", "Tsaidam Basin"]
+  },
+  {
+    "id": "maniqui",
+    "name": "Maniqui River Megafan",
+    "location": "Eastern Bolivia",
+    "coords": [-17.5, -62.5],
+    "description": "This fluvial megafan features one of the highest avulsion rates observed, with repeated channel shifts creating a dense network of abandoned channels covering 95%+ of its surface.",
+    "sensor": "Landsat / SRTM",
+    "tags": ["High Avulsion", "Andean Foreland", "Abandoned Channels"]
+  },
+  {
+    "id": "okavango",
+    "name": "Okavango Delta",
+    "location": "Botswana",
+    "coords": [-19.3, 22.8],
+    "description": "A massive endorheic alluvial fan. Unlike most fans, the Okavango empties into the Kalahari Desert, creating a unique inland delta system.",
+    "tags": ["Inland Delta", "Kalahari", "Pristine"]
+  },
+  {
+    "id": "gandak",
+    "name": "Gandak Megafan",
+    "location": "Bihar, India",
+    "coords": [26.6, 84.8],
+    "description": "A Himalayan mountain-fed river characterized by high discharge and a braided channel pattern. Its surface is marked by numerous paleochannels that record its migration history.",
+    "sensor": "IRS 1-C",
+    "tags": ["Himalayan", "Paleochannels", "High Discharge"]
+  },
+  {
+    "id": "pilcomayo",
+    "name": "Pilcomayo Megafan",
+    "location": "Bolivia/Paraguay",
+    "coords": [-22.0, -62.0],
+    "imageUrl": "public/assets/pilcomayo.jpg",
+    "imageSource": "NASA Earth Observatory",
+    "description": "The largest known megafan on Earth at 705 km long, formed by the Pilcomayo River spreading laterally after exiting the Andes. It creates a vast triangular sediment surface with radiating paleochannels.",
+    "sensor": "Hasselblad Camera",
+    "tags": ["World's Largest", "Chaco Region", "Andean Foreland"]
+  },
+  {
+    "id": "bermejo",
+    "name": "Bermejo Megafan",
+    "location": "Argentina",
+    "coords": [-23.0, -61.0],
+    "description": "Forms at the Andean foothills where the Bermejo River deposits sediments in a distributive fluvial pattern, contributing to the massive Chaco megafan cluster.",
+    "sensor": "Hasselblad Camera",
+    "tags": ["Chaco Cluster", "Andean Foothills", "Distributive"]
+  },
+  {
+    "id": "salado-juramento",
+    "name": "Salado-Juramento Megafan",
+    "location": "Northern Argentina",
+    "coords": [-25.0, -62.0],
+    "description": "Features a distal plain with an integrated aquifer system, exemplifying how megafans host vast groundwater resources in Quaternary fluvial deposits.",
+    "sensor": "Satellite Mapping",
+    "tags": ["Aquifer System", "Groundwater", "Quaternary"]
+  },
+  {
+    "id": "cormor",
+    "name": "Cormor Megafan",
+    "location": "Patagonia, Argentina",
+    "coords": [-46.0, -70.0],
+    "description": "Records glaciofluvial aggradation pulses between 45-20 ka BP, forming a large inland fan from Andean meltwater sediment at mountain fronts.",
+    "sensor": "Space-based Ops",
+    "tags": ["Glaciofluvial", "Patagonia", "Meltwater"]
+  }
+]
