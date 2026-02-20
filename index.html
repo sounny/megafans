@@ -119,7 +119,8 @@
                 name: 'Kosi Megafan',
                 location: 'Bihar, India / Nepal',
                 coords: [26.45, 86.95],
-                imageUrl: 'https://www.iitk.ac.in/gangetic/alluvial/kosi_big.jpg',
+                imageUrl: 'public/assets/kosi.jpg',
+                imageSource: 'IIT Kanpur',
                 description: 'Recognized as the largest "wet" alluvial megafan in the world. The Kosi River is a high-energy, mountain-fed system with a braided morphology and high sediment load, migrating over 110 km in 250 years.',
                 sensor: 'IRS 1-C',
                 tags: ['World\'s Largest Wet Fan', 'Himalayan', 'Active Migration']
@@ -130,6 +131,7 @@
                 location: 'Argentina/Paraguay',
                 coords: [-28.1, -58.5],
                 imageUrl: 'public/assets/parana_nasa.jpg',
+                imageSource: 'NASA Earth Observatory',
                 description: 'A massive alluvial feature identified by NASA Earth Observatory. This "fossil" megafan was created by the migration of the Parana River and is recognized for its distinctive fan-shaped arrangement of ancient channels.',
                 sensor: 'Hasselblad / Landsat',
                 tags: ['NASA Featured', 'Fossil Megafan', 'Chaco Region']
@@ -139,7 +141,8 @@
                 name: 'Southern Iran Fan',
                 location: 'Fars Province, Iran',
                 coords: [28.6, 54.3],
-                imageUrl: 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/36000/36041/alluvialfan_ast_2004286_lrg.jpg',
+                imageUrl: 'public/assets/southern_iran.jpg',
+                imageSource: 'NASA Earth Observatory',
                 description: 'A dry river channel in the Zagros Mountains forms a silvery alluvial fan. The proximity of the water table allows for a belt of lush agricultural land to thrive along the fan\'s curve.',
                 sensor: 'ASTER (Terra)',
                 tags: ['Zagros Mountains', 'Agricultural Belt', 'Silvery Appearance']
@@ -149,7 +152,8 @@
                 name: 'Kazakhstan Fan',
                 location: 'Almaty, Kazakhstan',
                 coords: [46.1, 81.6],
-                imageUrl: 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/83000/83455/kazakhstanfan_oli_2013252_lrg.jpg',
+                imageUrl: 'public/assets/kazakhstan.jpg',
+                imageSource: 'NASA Earth Observatory',
                 description: 'Located in the Alakol basin, this fan is created as a mountain stream emerges from narrow peaks. The intricate network of interlacing channels creates fertile landforms in the basin.',
                 sensor: 'OLI (Landsat 8)',
                 tags: ['Alakol Basin', 'Intricate Channels', 'Mountain Stream']
@@ -159,7 +163,8 @@
                 name: 'Western China Fan',
                 location: 'Xinjiang, China',
                 coords: [37.4, 84.3],
-                imageUrl: 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/4000/4008/aster_artII_alluvial_lrg.jpg',
+                imageUrl: 'public/assets/western_china.jpg',
+                imageSource: 'NASA Earth Observatory',
                 description: 'Situated at the edge of the Taklimakan Desert, this fan features active channels appearing in vivid electric blue. The braided streams eventually vanish into the desert sands.',
                 sensor: 'ASTER (Terra)',
                 tags: ['Taklimakan Desert', 'Electric Blue', 'Braided Streams']
@@ -169,7 +174,8 @@
                 name: 'Tsaidam Basin Fan',
                 location: 'Qinghai, China',
                 coords: [37.5, 94.2],
-                imageUrl: 'https://d2pn8kiwq2w21t.cloudfront.net/original_images/jpegPIA11067.jpg',
+                imageUrl: 'public/assets/tsaidam.jpg',
+                imageSource: 'NASA JPL',
                 description: 'Formed by the Xi Taijnar He river descending from the Tibetan Plateau. The massive sediment build-up forces the river to bifurcate into multiple segments feeding two significant lakes.',
                 sensor: 'Electronic Still Camera',
                 tags: ['Tibetan Plateau', 'Bifurcation', 'Tsaidam Basin']
@@ -205,7 +211,8 @@
                 name: 'Pilcomayo Megafan',
                 location: 'Bolivia/Paraguay',
                 coords: [-22.0, -62.0],
-                imageUrl: 'https://assets.science.nasa.gov/content/dam/science/esd/eo/images/imagerecords/148000/148755/parana_sts055_lrg.jpg',
+                imageUrl: 'public/assets/pilcomayo.jpg',
+                imageSource: 'NASA Earth Observatory',
                 description: 'The largest known megafan on Earth at 705 km long, formed by the Pilcomayo River spreading laterally after exiting the Andes. It creates a vast triangular sediment surface with radiating paleochannels.',
                 sensor: 'Hasselblad Camera',
                 tags: ['World\'s Largest', 'Chaco Region', 'Andean Foreland']
@@ -542,12 +549,19 @@
                                 alt={activeFan.name} 
                                 onClick={(e) => e.stopPropagation()}
                             />
-                            {activeFan.sensor && (
-                                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 bg-black/80 backdrop-blur-md flex items-center gap-2 rounded-full border border-white/10 text-white text-xs font-bold uppercase tracking-widest shadow-2xl">
-                                    <i data-lucide="satellite" className="w-4 h-4 text-primary"></i> 
-                                    Captured by {activeFan.sensor}
-                                </div>
-                            )}
+                            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 w-full">
+                                {activeFan.sensor && (
+                                    <div className="px-4 py-2 bg-black/80 backdrop-blur-md flex items-center gap-2 rounded-full border border-white/10 text-white text-xs font-bold uppercase tracking-widest shadow-2xl">
+                                        <i data-lucide="satellite" className="w-4 h-4 text-primary"></i> 
+                                        Captured by {activeFan.sensor}
+                                    </div>
+                                )}
+                                {activeFan.imageSource && (
+                                    <div className="text-white/60 text-[11px] uppercase font-semibold tracking-widest bg-black/60 px-3 py-1 rounded-full backdrop-blur-sm">
+                                        Source: {activeFan.imageSource}
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     )}
                 </div>
