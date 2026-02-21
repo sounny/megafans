@@ -290,6 +290,8 @@
                     });
             }, []);
 
+            const markersLayerRef = useRef(null);
+
             useEffect(() => {
                 // Ensure Leaflet is loaded, container exists, and we have an activeFan
                 if (typeof L !== 'undefined' && mapContainerRef.current && !leafletMap.current && activeFan) {
@@ -304,6 +306,31 @@
                     }).addTo(leafletMap.current);
 
                     L.control.zoom({ position: 'bottomright' }).addTo(leafletMap.current);
+                    
+                    // Create layer group for pins
+                    markersLayerRef.current = L.featureGroup().addTo(leafletMap.current);
+                }
+                
+                // Add/Update markers if map is ready and data exists
+                if (leafletMap.current && markersLayerRef.current && fansData.length > 0) {
+                    markersLayerRef.current.clearLayers(); // Clear old markers
+                    
+                    fansData.forEach(fan => {
+                        const isActive = activeFan && fan.id === activeFan.id;
+                        const markerHtml = `<div style="background-color: ${isActive ? '#fff' : '#00d2ff'}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid ${isActive ? '#00d2ff' : '#fff'}; box-shadow: 0 0 10px ${isActive ? '#fff' : '#00d2ff'}; cursor: pointer; transition: all 0.3s; transform: ${isActive ? 'scale(1.3)' : 'scale(1)'};"></div>`;
+                        
+                        const markerIcon = L.divIcon({
+                            className: 'custom-marker',
+                            html: markerHtml,
+                            iconSize: [14, 14],
+                            iconAnchor: [7, 7]
+                        });
+                        
+                        const marker = L.marker(fan.coords, { icon: markerIcon }).on('click', () => {
+                            setActiveFan(fan);
+                        });
+                        marker.addTo(markersLayerRef.current);
+                    });
                 }
                 
                 lucide.createIcons();
@@ -312,7 +339,7 @@
                 return () => {
                    // We don't indiscriminately remove the map on every render to retain tile caching
                 };
-            }, [activeFan]); // depend on activeFan loading
+            }, [activeFan, fansData]); // depend on activeFan loading and fansData
 
             useEffect(() => {
                 if (leafletMap.current && activeFan) {
