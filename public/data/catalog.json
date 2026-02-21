@@ -136,5 +136,15 @@
     "description": "Records glaciofluvial aggradation pulses between 45-20 ka BP, forming a large inland fan from Andean meltwater sediment at mountain fronts.",
     "sensor": "Space-based Ops",
     "tags": ["Glaciofluvial", "Patagonia", "Meltwater"]
+  },
+  {
+    "id": "ili-megafan",
+    "name": "Ili River Megafan",
+    "location": "Kazakhstan",
+    "coords": [45.549765, 75.600772],
+    "imageUrl": "public/assets/ili_kazakhstan.jpg",
+    "imageSource": "Google Earth",
+    "description": "A massive fluvial megafan in Kazakhstan, approximately 230 km in length from its apex to its toe. The system terminates into Lake Balkhash, showing a well-defined distributive pattern across the arid landscape.",
+    "tags": ["Kazakhstan", "Lake Balkhash", "230km Length"]
   }
 ]
