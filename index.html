@@ -72,7 +72,7 @@
             z-index: -1;
         }
         #map { height: 100%; width: 100%; }
-        .leaflet-container { background: #0a0a0f !important; border-radius: 1.5rem; }
+        .leaflet-container { background: #0a0a0f !important; }
         
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
@@ -118,7 +118,7 @@
                 <div className="min-h-screen flex flex-col bg-bg text-f0f0f5">
                     {/* Navigation */}
                     <nav className="glass sticky top-0 z-[2000] px-6 py-4">
-                        <div className="max-w-7xl mx-auto flex justify-between items-center">
+                        <div className="flex justify-between items-center">
                             <div className="font-heading font-extrabold text-2xl cursor-pointer" onClick={() => setView('hub')}>
                                 MEGAFANS<span className="text-primary tracking-widest ml-1">OBSERVATORY</span>
                             </div>
@@ -374,14 +374,16 @@
                                     >
                                         <Icon name={sidebarOpen ? "panel-left-close" : "panel-left-open"} className="w-6 h-6" />
                                     </button>
-                                    <div>
-                                        <h2 className="text-2xl font-heading font-bold text-white leading-tight">
-                                           {activeFan ? activeFan.name : "Global Observation Field"}
-                                        </h2>
-                                        <p className="text-gray-400 text-xs font-semibold tracking-widest uppercase">
-                                            {activeFan ? activeFan.location : "Planetary Scale Analysis"}
-                                        </p>
-                                    </div>
+                                    {activeFan && (
+                                        <div>
+                                            <h2 className="text-2xl font-heading font-bold text-white leading-tight">
+                                               {activeFan.name}
+                                            </h2>
+                                            <p className="text-gray-400 text-xs font-semibold tracking-widest uppercase">
+                                                {activeFan.location}
+                                            </p>
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             
