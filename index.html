@@ -139,12 +139,7 @@
                         {view === 'hub' ? <HubView setView={setView} /> : <ImageryView />}
                     </main>
 
-                    {/* Footer */}
-                    {view === 'hub' && (
-                        <footer className="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
-                            <p>© {new Date().getFullYear()} Moulay Anwar Sounny-Slitine, PhD. Megafans Observatory.</p>
-                        </footer>
-                    )}
+                    {/* Footer moved to HubView for better screen space management */}
                 </div>
             );
         }
@@ -237,6 +232,11 @@
                             </div>
                         </div>
                     </section>
+
+                    {/* Footer at the end of scrollable content */}
+                    <footer className="py-6 border-t border-white/5 text-center text-gray-500 text-xs">
+                        <p>© {new Date().getFullYear()} Moulay Anwar Sounny-Slitine, PhD. Megafans Observatory.</p>
+                    </footer>
                 </div>
             );
         }
