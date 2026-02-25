@@ -147,7 +147,10 @@
         );
 
         function App() {
-            const [view, setView] = useState('hub');
+            const [view, setView] = useState(() => {
+                const params = new URLSearchParams(window.location.search);
+                return params.get('view') === 'imagery' || params.get('view') === 'observations' ? 'imagery' : 'hub';
+            });
 
             return (
                 <div className="h-screen flex flex-col bg-bg text-f0f0f5 overflow-hidden">
@@ -207,8 +210,8 @@
                         />
                         <CategoryCard
                             icon="file-text"
-                            title="Publications"
-                            desc="Peer-reviewed publications and conference proceedings detailing the geomorphology of major fluvial systems."
+                            title="Research"
+                            desc="Peer-reviewed publications, conference proceedings, and scientific reports detailing the geomorphology of major fluvial systems."
                             href="#research"
                         />
                     </section>
