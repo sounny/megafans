@@ -1,16 +1,28 @@
-# React + Vite
+# Megafans Observatory
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Megafans Observatory**, an interactive web-based platform dedicated to the exploration and study of the world's megafans. 
 
-Currently, two official plugins are available:
+## About the Project
+This observatory serves as the digital companion and visualizer for the novel global geodatabase of megafans produced in the dissertation: **"Geomorphology of Megafans" (Sounny-Slitine, 2020)**. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Megafans—large fan-shaped landforms greater than 10³ square-kilometers built by rivers exiting topographic fronts—are some of the least understood landforms on Earth, often popularly referred to as "inland deltas." This site provides an interactive map and catalog to visualize morphometrics of global megafans and their contributing source basins across major regions including the Chaco Plain, the Sahel, Himalayan Forelands, Okavango Delta, and the Pantanal.
 
-## React Compiler
+## Features
+- **Global Map Visualization**: Interactive Leaflet map displaying the locations and spatial footprints of megafans worldwide.
+- **Data Catalog**: Browse through the complete dataset of megafans, exploring their unique metrics and distinguishing characteristics.
+- **Satellite Imagery Integration**: Direct links and views of megafans using satellite imagery.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Development
 
-## Expanding the ESLint configuration
+The site is built with React and Tailwind CSS. 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Local Setup
+To run the site locally, you will need a basic web server to bypass CORS restrictions for fetching the local data.
+```bash
+python -m http.server 8000
+```
+Then navigate to `http://localhost:8000` in your web browser.
+
+## Citation
+If you use data from this observatory, please reference the original dissertation:
+*Sounny-Slitine, M. M. A. A. (2020). Geomorphology of Megafans [Ph.D. Dissertation, The University of Texas at Austin].*
