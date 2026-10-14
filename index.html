@@ -240,19 +240,107 @@
                             <div className="h-px flex-1 bg-white/10"></div>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-8 mb-24">
+                        <div className="grid md:grid-cols-3 gap-8 mb-16">
                             <PublicationCard
-                                icon="graduation-cap"
-                                title="PhD Dissertation"
-                                desc="Comprehensive analysis of megafan geomorphology and environmental impacts using multi-decadal remote sensing."
-                                link="https://repositories.lib.utexas.edu/items/98d7d40f-c995-4685-83ff-4da72011b083"
+                                icon="satellite"
+                                title="IAC 2026 Congress Proceedings"
+                                desc="Muzila, N., Bhatt, A., & Sounny-Slitine, M. A. (2026). Mapping and Characterizing Earth Megafan Systems using Multispectral Satellite Data (Paper No. IAC-26,B1,IP,14,x105879). 77th International Astronautical Congress, Antalya, Türkiye."
+                                link="https://dl.iafastro.directory/event/IAC-2026/paper/105879/"
                             />
                             <PublicationCard
                                 icon="book"
                                 title="Fluvial Megafans on Earth and Mars"
-                                desc="Chapter 5: Assessment of aggradation patterns on the Rio Grande (Guapay) megafan, Eastern Bolivia."
+                                desc="Latrubesse, E. M., & Sounny-Slitine, M. A. (2022). Chaco Megafans & assessment of aggradation patterns on the Rio Grande (Guapay) megafan. Cambridge University Press."
                                 link="https://www.cambridge.org/core/books/fluvial-megafans-on-earth-and-mars/018FB3BEF111A9251ED5C3134BA59D14"
                             />
+                            <PublicationCard
+                                icon="graduation-cap"
+                                title="PhD Dissertation"
+                                desc="Sounny-Slitine, M. A. (2020). Geomorphology of Megafans: Comprehensive analysis of megafan geomorphology and environmental impacts using multi-decadal remote sensing. The University of Texas at Austin."
+                                link="https://repositories.lib.utexas.edu/items/98d7d40f-c995-4685-83ff-4da72011b083"
+                            />
+                        </div>
+
+                        {/* Conference Presentations & Proceedings Subsection */}
+                        <div className="mb-24">
+                            <div className="flex items-center gap-4 mb-8">
+                                <h3 className="text-2xl font-heading font-bold text-white">Conference <span className="text-primary">Presentations &amp; Proceedings</span></h3>
+                                <div className="h-px flex-1 bg-white/10"></div>
+                            </div>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                <a href="https://dl.iafastro.directory/event/IAC-2026/paper/105879/" target="_blank" rel="noopener noreferrer" className="glass p-6 rounded-2xl border border-white/10 hover:border-primary/40 transition-all group block">
+                                    <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                        <span className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-[10px] font-black uppercase tracking-widest">77th International Astronautical Congress (IAC 2026) | Antalya, Türkiye (5-9 Oct 2026)</span>
+                                        <span className="text-xs font-mono text-gray-400 group-hover:text-primary transition-colors">IAC-26,B1,IP,14,x105879 &#8599;</span>
+                                    </div>
+                                    <h4 className="text-lg font-heading font-bold text-white group-hover:text-primary transition-colors mb-2">
+                                        Mapping and Characterizing Earth Megafan Systems using Multispectral Satellite Data
+                                    </h4>
+                                    <p className="text-gray-400 text-xs leading-relaxed mb-3">
+                                        Machine learning and Google Earth Engine framework characterizing ecohydrological dynamics across the 2,023,590-hectare Okavango megafan using 25-year MODIS Terra MOD13Q1 EVI time series (2000-2025), Random Forest classification, and anomaly detection.
+                                    </p>
+                                    <p className="text-[11px] text-gray-300 font-semibold mb-1">
+                                        Norbert Muzila, Aastha Bhatt &amp; Moulay Anwar Sounny-Slitine (International Space University)
+                                    </p>
+                                    <p className="text-[11px] text-primary/80 font-mono">
+                                        Session: IAF Earth Observation Symposium (B1) &bull; Paper Code: IAC-26,B1,IP,14,x105879
+                                    </p>
+                                </a>
+
+                                <div className="glass p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
+                                    <div>
+                                        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                            <span className="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-[10px] font-black uppercase tracking-widest">AAG Annual Meeting (2018) | New Orleans, LA</span>
+                                            <span className="text-xs font-mono text-gray-500">Conference Presentation</span>
+                                        </div>
+                                        <h4 className="text-lg font-heading font-bold text-white mb-2">
+                                            Morphometric Difference Between Megafans and Alluvial Fans
+                                        </h4>
+                                        <p className="text-gray-400 text-xs leading-relaxed mb-3">
+                                            Quantitative morphometric analysis distinguishing continental-scale fluvial megafans from classic piedmont alluvial fans across slope, drainage basin area, and longitudinal profile parameters.
+                                        </p>
+                                    </div>
+                                    <p className="text-[11px] text-gray-300 font-semibold">
+                                        Moulay Anwar Sounny-Slitine (Association of American Geographers)
+                                    </p>
+                                </div>
+
+                                <div className="glass p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
+                                    <div>
+                                        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                            <span className="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-[10px] font-black uppercase tracking-widest">9th International Conference on Geomorphology (ICG 2017) | New Delhi, India</span>
+                                            <span className="text-xs font-mono text-gray-500">International Congress</span>
+                                        </div>
+                                        <h4 className="text-lg font-heading font-bold text-white mb-2">
+                                            Morphometric Differences of Alluvial Fans and Megafans
+                                        </h4>
+                                        <p className="text-gray-400 text-xs leading-relaxed mb-3">
+                                            Comparative global geomorphic assessment presented at the 9th International Conference on Geomorphology evaluating depositional geometry and catchment scaling laws.
+                                        </p>
+                                    </div>
+                                    <p className="text-[11px] text-gray-300 font-semibold">
+                                        Moulay Anwar Sounny-Slitine (International Association of Geomorphologists)
+                                    </p>
+                                </div>
+
+                                <div className="glass p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
+                                    <div>
+                                        <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                            <span className="px-3 py-1 bg-secondary/10 text-secondary border border-secondary/20 rounded-full text-[10px] font-black uppercase tracking-widest">AGU Fall Meeting (2015) | San Francisco, CA</span>
+                                            <span className="text-xs font-mono text-gray-500">Fall Meeting</span>
+                                        </div>
+                                        <h4 className="text-lg font-heading font-bold text-white mb-2">
+                                            Morphometry and Geomorphic Characteristics of Large Alluvial Fans and Megafans in South America
+                                        </h4>
+                                        <p className="text-gray-400 text-xs leading-relaxed mb-3">
+                                            Multi-sensor satellite and digital elevation model investigation of Chaco and Andean foreland megafan complexes across South America.
+                                        </p>
+                                    </div>
+                                    <p className="text-[11px] text-gray-300 font-semibold">
+                                        Moulay Anwar Sounny-Slitine (American Geophysical Union)
+                                    </p>
+                                </div>
+                            </div>
                         </div>
 
                         {/* Research Team Section */}
@@ -275,7 +363,7 @@
                                     role="Researcher"
                                     bio="Luís Centeno is an emerging expert in Astrogeology and AI development, dedicated to uncovering the geological history of the Solar System. Currently pursuing a Master of Space Sciences at the ISU, he led the architecture of scientific payloads for future Mars missions and develops models for Martian datasets."
                                     image="public/assets/Business_Headshot.jpeg"
-                                    linkedin="http://linkedin.com/in/luis-centeno"
+                                    linkedin="https://linkedin.com/in/luis-centeno"
                                 />
                             </div>
                         </div>
