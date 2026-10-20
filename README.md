@@ -1,28 +1,23 @@
 # Megafans Observatory
 
-Welcome to the **Megafans Observatory**, an interactive web-based platform dedicated to the exploration and study of the world's megafans. 
+Welcome to the **Megafans Observatory** ([https://sounny.github.io/megafans/](https://sounny.github.io/megafans/)), an interactive planetary and terrestrial geomorphology platform dedicated to the exploration, morphometric analysis, and comparative study of alluvial fans and fluvial megafans on **Earth** and **Mars**.
 
-## About the Project
-This observatory serves as the digital companion and visualizer for the novel global geodatabase of megafans produced in the dissertation: **"Geomorphology of Megafans" (Sounny-Slitine, 2020)**. 
+## Dataset Inventory (1,509 Planetary Systems)
 
-Megafans—large fan-shaped landforms greater than 10³ square-kilometers built by rivers exiting topographic fronts—are some of the least understood landforms on Earth, often popularly referred to as "inland deltas." This site provides an interactive map and catalog to visualize morphometrics of global megafans and their contributing source basins across major regions including the Chaco Plain, the Sahel, Himalayan Forelands, Okavango Delta, and the Pantanal.
+- **Earth Terrestrial Megafan Geodatabase (460 Systems)**:
+  - Complete digital catalog from the dissertation **"Geomorphology of Megafans" (Sounny-Slitine, 2020)** (`MegafanDB/Metrics5.xlsx`), plus featured NASA Earth Observatory systems.
+  - **430 systems** with measured Apex-to-Toe Lengths ($\text{km}$) and Slope Gradients.
+  - **125 systems** with digitized Planform Area ($\text{km}^2$), Vertical Relief ($\text{m}$), and Contributing Catchment Basin Area ($\text{km}^2$).
+  - **19 vector polygon footprints** (`public/data/megafans_polygons.geojson`) and **5 Regional Basin–Megafan Cartographic Plates** (Chaco Plain, Pantanal Basin, Himalayan Foreland, Sahel Depression, and Okavango Rift).
+- **Mars Crater Alluvial Fan Catalog (1,049 Systems)**:
+  - Global Martian alluvial fan dataset (`public/data/mars_catalog.json`) with USGS Tanaka geologic units and crater coordinates, viewable across OpenPlanetary Viking, USGS THEMIS IR, and MOLA elevation basemaps.
 
-## Features
-- **Global Map Visualization**: Interactive Leaflet map displaying the locations and spatial footprints of megafans worldwide.
-- **Data Catalog**: Browse through the complete dataset of megafans, exploring their unique metrics and distinguishing characteristics.
-- **Satellite Imagery Integration**: Direct links and views of megafans using satellite imagery.
+## Key Features
+- **Interactive Planetary GIS (`Observations`)**: Switch between **Earth (460)** and **Mars (1,049)**, toggle vector megafan polygon boundaries, inspect apex-to-toe flow axes, and switch multi-sensor satellite and topographic basemaps.
+- **Global Morphometric Explorer (`GeoDatabase`)**: Search, filter by continent or mountain system, sort by Planform Area, Catchment Area, Apex–Toe Length, or Vertical Relief, inspect regional cartographic plates, and export CSV/GeoJSON datasets.
+- **Scientific Portfolio (`#research`)**: Peer-reviewed publications and conference proceedings from **IAC 2026 (Antalya)**, **Cambridge University Press (2022)**, **UT Austin (2020)**, **AAG (2018)**, **ICG (2017)**, and **AGU (2015)**.
 
-## Development
-
-The site is built with React and Tailwind CSS. 
-
-### Local Setup
-To run the site locally, you will need a basic web server to bypass CORS restrictions for fetching the local data.
-```bash
-python -m http.server 8000
-```
-Then navigate to `http://localhost:8000` in your web browser.
-
-## Citation
-If you use data from this observatory, please reference the original dissertation:
-*Sounny-Slitine, M. M. A. A. (2020). Geomorphology of Megafans [Ph.D. Dissertation, The University of Texas at Austin].*
+## Citations
+- Muzila, N., Bhatt, A., & Sounny-Slitine, M. A. (2026). *Mapping and Characterizing Earth Megafan Systems using Multispectral Satellite Data* (Paper No. IAC-26,B1,IP,14,x105879). 77th International Astronautical Congress, Antalya, Türkiye.
+- Latrubesse, E. M., & Sounny-Slitine, M. A. (2022). *Chaco Megafans & assessment of aggradation patterns on the Rio Grande (Guapay) megafan*. In *Fluvial Megafans on Earth and Mars*, Cambridge University Press.
+- Sounny-Slitine, M. A. (2020). *Geomorphology of Megafans: Comprehensive analysis of megafan geomorphology and environmental impacts using multi-decadal remote sensing* [Ph.D. Dissertation, The University of Texas at Austin].

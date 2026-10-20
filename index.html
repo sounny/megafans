@@ -4,33 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Megafans Observatory | Lead Researcher: Moulay Anwar Sounny-Slitine, PhD</title>
-    <!-- SEO Meta Tags -->
+    <title>Megafans Observatory | Planetary &amp; Terrestrial Megafan Geodatabase | Dr. Moulay Anwar Sounny-Slitine</title>
     <meta name="description"
-        content="Megafans Observatory: Advancing the geomorphology and understanding of megafans on Earth and Mars through remote sensing and Earth Observation. Led by Dr. Sounny.">
+        content="Megafans Observatory: Interactive planetary geodatabase of 1,509 alluvial fans and fluvial megafans across Earth (460 systems) and Mars (1,049 crater fans). Led by Dr. Moulay Anwar Sounny-Slitine.">
+    <link rel="canonical" href="https://sounny.github.io/megafans/">
+    <meta property="og:title" content="Megafans Observatory | Global Earth &amp; Mars Megafan Geodatabase">
+    <meta property="og:description" content="Explore 460 terrestrial megafan systems and 1,049 Martian alluvial fans with morphometric telemetry, vector footprints, and multi-sensor satellite imagery.">
+    <meta property="og:url" content="https://sounny.github.io/megafans/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://sounny.github.io/megafans/public/assets/megafan_database.jpg">
+    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Fonts -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://sounny.github.io/megafans/#website",
+          "url": "https://sounny.github.io/megafans/",
+          "name": "Megafans Observatory",
+          "description": "Planetary and terrestrial geomorphology observatory cataloging 460 Earth megafan systems and 1,049 Martian alluvial fans.",
+          "publisher": { "@id": "https://sounny.github.io/#person" }
+        },
+        {
+          "@type": "Dataset",
+          "@id": "https://sounny.github.io/megafans/#dataset",
+          "name": "Global Earth & Mars Megafan Geodatabase",
+          "description": "Multi-decadal remote sensing and morphometric geodatabase of 460 terrestrial megafans (Sounny-Slitine, 2020) and 1,049 Martian alluvial fans.",
+          "url": "https://sounny.github.io/megafans/",
+          "creator": {
+            "@type": "Person",
+            "@id": "https://sounny.github.io/#person",
+            "name": "Moulay Anwar Sounny-Slitine",
+            "sameAs": [
+              "https://orcid.org/0000-0001-6669-9246",
+              "https://www.wikidata.org/wiki/Q140745446",
+              "https://scholar.google.com/citations?user=7xUuX4QAAAAJ",
+              "https://www.linkedin.com/in/sounny/",
+              "https://sounny.github.io/"
+            ]
+          }
+        }
+      ]
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&family=Space+Grotesk:wght@500;700&display=swap"
         rel="stylesheet">
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Leaflet CSS & JS - Loading early -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-    <!-- React & Babel for CDN -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -40,6 +75,7 @@
                     fontFamily: {
                         heading: ['Outfit', 'sans-serif'],
                         sans: ['Inter', 'sans-serif'],
+                        mono: ['Space Grotesk', 'monospace'],
                     },
                     colors: {
                         bg: '#0a0a0f',
@@ -52,85 +88,17 @@
     </script>
 
     <style>
-        html,
-        body {
-            height: 100%;
-            overflow: hidden;
-        }
-
-        body {
-            background-color: #0a0a0f;
-            color: #f0f0f5;
-        }
-
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #00d2ff, #3a7bd5);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-glow {
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(58, 123, 213, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        #map {
-            height: 100%;
-            width: 100%;
-        }
-
-        .leaflet-container {
-            background: #0a0a0f !important;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(0, 210, 255, 0.3);
-        }
-
-        .fan-item.active {
-            border-left: 4px solid #00d2ff;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .category-card:hover .category-icon {
-            transform: scale(1.1) rotate(5deg);
-            color: #00d2ff;
-        }
-
-        .profile-image-circle {
-            border: 3px solid #00d2ff;
-            box-shadow: 0 0 15px rgba(0, 210, 255, 0.5);
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 9999px;
-        }
+        html, body { height: 100%; overflow: hidden; background-color: #0a0a0f; color: #f0f0f5; }
+        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(14px) saturate(1.6); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .gradient-text { background: linear-gradient(135deg, #00d2ff, #3a7bd5); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-glow { position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at center, rgba(58, 123, 213, 0.12) 0%, transparent 50%); pointer-events: none; z-index: -1; }
+        .leaflet-container { background: #0a0a0f !important; }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.12); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 210, 255, 0.4); }
+        .category-card:hover .category-icon { transform: scale(1.1) rotate(5deg); color: #00d2ff; }
+        .profile-image-circle { border: 3px solid #00d2ff; box-shadow: 0 0 15px rgba(0, 210, 255, 0.5); aspect-ratio: 1 / 1; object-fit: cover; border-radius: 9999px; }
     </style>
 </head>
 
@@ -139,13 +107,11 @@
 
     <script>
       Babel.registerPreset('react-classic', {
-        presets: [
-          [Babel.availablePresets['react'], { "runtime": "classic" }]
-        ]
+        presets: [[Babel.availablePresets['react'], { "runtime": "classic" }]]
       });
     </script>
     <script type="text/babel" data-presets="react-classic,env">
-        const { useState, useEffect, useRef } = React;
+        const { useState, useEffect, useRef, useMemo } = React;
         const brandIcons = {
             Github: [
                 ["path", { d: "M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" }],
@@ -163,67 +129,148 @@
             <span dangerouslySetInnerHTML={{ __html: `<i data-lucide="${name}" class="${className || ''}"></i>` }} />
         );
 
+        const REGIONAL_ATLAS = [
+            { id: 'chaco', title: 'Chaco Plain Systems', subtitle: 'Andean Foreland, South America', fans: 'Pilcomayo, Bermejo, Juramento (Salado), Parapeti, Grande, Dulce', img: 'public/assets/chaco_map.png', coords: [-22.0, -62.0] },
+            { id: 'pantanal', title: 'Pantanal Basin Systems', subtitle: 'Upper Paraguay Depression, Brazil/Bolivia', fans: 'Taquari, São Lourenço, Cuiabá, Paraguai, Aquidauana, Taboco, Tucavaca', img: 'public/assets/pantanal_map.png', coords: [-18.5, -56.5] },
+            { id: 'himalayas', title: 'Himalayan Foreland', subtitle: 'Indo-Gangetic Plain, India/Nepal', fans: 'Kosi, Gandak, Sarda (Sharda), Tista, Ganga-Yamuna, Son', img: 'public/assets/himalayas_map.png', coords: [26.8, 84.5] },
+            { id: 'sahel', title: 'Sahel & Nile Systems', subtitle: 'Chad, Sudan & South Sudan', fans: 'Chari-Logone, Bahr Azoum, Bahr el Arab, White Nile, Khor Abu Habl, Wadi Howar', img: 'public/assets/sahel_map.png', coords: [11.0, 24.0] },
+            { id: 'okavango', title: 'Okavango Rift System', subtitle: 'Kalahari Basin, Botswana/Angola/Namibia', fans: 'Okavango, Cuando, Zambezi', img: 'public/assets/okavango_map.png', coords: [-19.0, 22.5] }
+        ];
+
         function App() {
             const [view, setView] = useState(() => {
                 const params = new URLSearchParams(window.location.search);
-                return params.get('view') === 'imagery' || params.get('view') === 'observations' ? 'imagery' : 'hub';
+                const v = params.get('view');
+                if (v === 'imagery' || v === 'observations') return 'imagery';
+                if (v === 'geodatabase' || v === 'database') return 'geodatabase';
+                return 'hub';
             });
+            const [earthFans, setEarthFans] = useState([]);
+            const [marsFans, setMarsFans] = useState([]);
+            const [polygonsData, setPolygonsData] = useState(null);
+            const [isLoading, setIsLoading] = useState(true);
+            const [selectedTarget, setSelectedTarget] = useState(null);
+
+            useEffect(() => {
+                Promise.all([
+                    fetch('public/data/catalog.json').then(res => res.json()),
+                    fetch('public/data/mars_catalog.json').then(res => res.json()),
+                    fetch('public/data/megafans_polygons.geojson').then(res => res.json()).catch(() => null)
+                ])
+                .then(([earthData, marsData, polyData]) => {
+                    setEarthFans(earthData);
+                    setMarsFans(marsData);
+                    setPolygonsData(polyData);
+                    setIsLoading(false);
+                })
+                .catch(error => {
+                    console.error("Error loading observatory datasets:", error);
+                    setIsLoading(false);
+                });
+            }, []);
+
+            const openFanOnMap = (fan, planet = 'earth') => {
+                setSelectedTarget({ fan, planet });
+                setView('imagery');
+            };
 
             return (
                 <div className="h-screen flex flex-col bg-bg text-f0f0f5 overflow-hidden">
-                    {/* Navigation */}
                     <nav className="glass sticky top-0 z-[2000] px-6 py-4">
-                        <div className="flex justify-between items-center">
-                            <div className="font-heading font-extrabold text-2xl cursor-pointer" onClick={() => setView('hub')}>
-                                MEGAFANS<span className="text-primary tracking-widest ml-1">OBSERVATORY</span>
+                        <div className="flex flex-wrap justify-between items-center gap-4">
+                            <div className="font-heading font-extrabold text-xl md:text-2xl cursor-pointer flex items-center gap-2" onClick={() => setView('hub')}>
+                                <span>MEGAFANS<span className="text-primary tracking-widest ml-1">OBSERVATORY</span></span>
+                                <span className="hidden sm:inline-block px-2.5 py-0.5 text-[10px] font-mono font-bold bg-primary/10 text-primary border border-primary/20 rounded-full">
+                                    {(earthFans.length + marsFans.length).toLocaleString()} SYSTEMS
+                                </span>
                             </div>
-                            <div className="flex gap-6 items-center">
-                                <button onClick={() => setView('hub')} className={`text-sm font-bold transition-colors ${view === 'hub' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>HOME</button>
-                                <button onClick={() => setView('imagery')} className={`text-sm font-bold transition-colors ${view === 'imagery' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>OBSERVATIONS</button>
-                                <a href="#research" onClick={() => setView('hub')} className={`text-sm font-bold transition-colors text-gray-400 hover:text-white`}>RESEARCH</a>
-                                <a href="https://github.com/sounny/megafans" target="_blank" className="text-gray-400 hover:text-white"><Icon name="github" className="w-5 h-5" /></a>
+                            <div className="flex gap-5 md:gap-7 items-center">
+                                <button onClick={() => setView('hub')} className={`text-xs md:text-sm font-bold transition-colors ${view === 'hub' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>HOME</button>
+                                <button onClick={() => setView('imagery')} className={`text-xs md:text-sm font-bold transition-colors ${view === 'imagery' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>OBSERVATIONS</button>
+                                <button onClick={() => setView('geodatabase')} className={`text-xs md:text-sm font-bold transition-colors ${view === 'geodatabase' ? 'text-primary' : 'text-gray-400 hover:text-white'}`}>GEODATABASE</button>
+                                <a href="#research" onClick={() => setView('hub')} className="text-xs md:text-sm font-bold transition-colors text-gray-400 hover:text-white">RESEARCH</a>
+                                <a href="https://github.com/sounny/megafans" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white" title="GitHub Repository"><Icon name="github" className="w-5 h-5" /></a>
                             </div>
                         </div>
                     </nav>
 
                     <main className="flex-1 flex flex-col overflow-hidden">
-                        {view === 'hub' ? <HubView setView={setView} /> : <ImageryView />}
+                        {view === 'hub' && <HubView setView={setView} earthCount={earthFans.length || 460} marsCount={marsFans.length || 1049} />}
+                        {view === 'imagery' && (
+                            <ImageryView
+                                earthFans={earthFans}
+                                marsFans={marsFans}
+                                polygonsData={polygonsData}
+                                isLoading={isLoading}
+                                selectedTarget={selectedTarget}
+                                clearSelectedTarget={() => setSelectedTarget(null)}
+                                onOpenDatabase={() => setView('geodatabase')}
+                            />
+                        )}
+                        {view === 'geodatabase' && (
+                            <GeoDatabaseView
+                                earthFans={earthFans}
+                                marsFans={marsFans}
+                                polygonsData={polygonsData}
+                                onSelectFan={openFanOnMap}
+                            />
+                        )}
                     </main>
-
-                    {/* Footer moved to HubView for better screen space management */}
                 </div>
             );
         }
 
-        function HubView({ setView }) {
+        function HubView({ setView, earthCount, marsCount }) {
             useEffect(() => { lucide.createIcons({ icons: allIcons }); }, []);
 
             return (
                 <div className="flex-1 overflow-y-auto animate-in fade-in duration-700">
-                    {/* Hero Section */}
-                    <header className="relative pt-24 pb-12 px-6 text-center overflow-hidden">
+                    <header className="relative pt-20 pb-12 px-6 text-center overflow-hidden">
                         <div className="hero-glow"></div>
-                        <h1 className="text-6xl md:text-8xl font-heading font-extrabold tracking-tighter mb-4 gradient-text">
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass border border-primary/20 text-primary text-xs font-mono font-bold mb-6">
+                            <Icon name="globe-2" className="w-3.5 h-3.5" /> PLANETARY FLUVIAL GEOMORPHOLOGY &bull; EARTH &amp; MARS
+                        </div>
+                        <h1 className="text-5xl md:text-8xl font-heading font-extrabold tracking-tighter mb-4 gradient-text">
                             Megafans Observatory
                         </h1>
-                        <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10">
                             Advancing the geomorphology and understanding of megafans on Earth and Mars through remote sensing and Earth Observation.
                         </p>
+
+                        {/* Telemetry KPI Strip */}
+                        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                            <div onClick={() => setView('imagery')} className="glass p-5 rounded-2xl border border-white/10 hover:border-primary/40 transition-all cursor-pointer">
+                                <div className="text-3xl font-mono font-bold text-primary">{earthCount.toLocaleString()}</div>
+                                <div className="text-[11px] font-bold uppercase tracking-wider text-gray-400 mt-1">Terrestrial Fans Mapped</div>
+                            </div>
+                            <div onClick={() => setView('imagery')} className="glass p-5 rounded-2xl border border-white/10 hover:border-[#ff4d4d]/40 transition-all cursor-pointer">
+                                <div className="text-3xl font-mono font-bold text-[#ff4d4d]">{marsCount.toLocaleString()}</div>
+                                <div className="text-[11px] font-bold uppercase tracking-wider text-gray-400 mt-1">Martian Crater Fans</div>
+                            </div>
+                            <div onClick={() => setView('geodatabase')} className="glass p-5 rounded-2xl border border-white/10 hover:border-secondary/40 transition-all cursor-pointer">
+                                <div className="text-3xl font-mono font-bold text-white">{(earthCount + marsCount).toLocaleString()}</div>
+                                <div className="text-[11px] font-bold uppercase tracking-wider text-gray-400 mt-1">Total Planetary Catalog</div>
+                            </div>
+                            <div onClick={() => setView('geodatabase')} className="glass p-5 rounded-2xl border border-white/10 hover:border-primary/40 transition-all cursor-pointer">
+                                <div className="text-3xl font-mono font-bold text-secondary">704.3 <span className="text-base">km</span></div>
+                                <div className="text-[11px] font-bold uppercase tracking-wider text-gray-400 mt-1">Max Fan Length (Pilcomayo)</div>
+                            </div>
+                        </div>
                     </header>
 
                     {/* Categories Grid */}
-                    <section className="max-w-7xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-8">
+                    <section className="max-w-7xl mx-auto px-6 pb-20 pt-6 grid md:grid-cols-3 gap-8">
                         <CategoryCard
                             icon="telescope"
                             title="Observations"
-                            desc="Interactive high-resolution satellite imagery explorer fueled by planetary-scale data."
+                            desc="Interactive planetary GIS explorer featuring 460 terrestrial megafan systems, vector polygon footprints, and 1,049 Martian crater fans."
                             onClick={() => setView('imagery')}
                         />
                         <CategoryCard
                             icon="database"
                             title="GeoDatabase"
-                            desc="Research and multi-decadal megafan datasets cataloged for scientific inquiry."
-                            href="#research"
+                            desc="Search, sort, and export the complete Sounny-Slitine (2020) global morphometric database, basin scaling metrics, and regional cartographic plates."
+                            onClick={() => setView('geodatabase')}
                         />
                         <CategoryCard
                             icon="file-text"
@@ -368,7 +415,6 @@
                             </div>
                         </div>
 
-
                         {/* Profile Section at the Bottom */}
                         <div className="max-w-4xl mx-auto">
                             <div className="glass p-8 md:p-10 rounded-[2.5rem] flex flex-col md:flex-row items-center gap-8 border border-white/10">
@@ -380,17 +426,20 @@
                                     />
                                 </div>
                                 <div className="text-center md:text-left">
-                                    <span className="text-primary font-bold tracking-[0.2em] text-xs mb-2 block uppercase">Dr Sounny</span>
-                                    <h2 className="text-4xl font-heading font-extrabold mb-4 text-white">Moulay Anwar Sounny-Slitine, PhD</h2>
+                                    <span className="text-primary font-bold tracking-[0.2em] text-xs mb-2 block uppercase">Lead Principal Investigator</span>
+                                    <h2 className="text-3xl md:text-4xl font-heading font-extrabold mb-4 text-white">Moulay Anwar Sounny-Slitine, PhD</h2>
                                     <p className="text-gray-400 leading-relaxed mb-6 italic">
                                         Dr. Sounny is a leading expert in Geospatial Science and Technology, dedicated to making complex GIS concepts accessible to all. Through the Megafans Observatory, he integrates multi-sensor satellite data to bridge the gap between physical geography and social impact.
                                     </p>
-                                    <div className="flex justify-center md:justify-start gap-4">
-                                        <a href="https://www.linkedin.com/in/sounny/" target="_blank" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-primary hover:text-black transition-all">
+                                    <div className="flex flex-wrap justify-center md:justify-start gap-4">
+                                        <a href="https://www.linkedin.com/in/sounny/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-primary hover:text-black transition-all">
                                             <Icon name="linkedin" className="w-4 h-4" /> LinkedIn
                                         </a>
-                                        <a href="https://sounny.github.io" target="_blank" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-secondary hover:text-white transition-all">
+                                        <a href="https://sounny.github.io" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-secondary hover:text-white transition-all">
                                             <Icon name="globe" className="w-4 h-4" /> sounny.github.io
+                                        </a>
+                                        <a href="https://scholar.google.com/citations?user=7xUuX4QAAAAJ" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-2 glass rounded-full text-xs font-bold hover:bg-white/10 hover:text-primary transition-all">
+                                            <Icon name="graduation-cap" className="w-4 h-4" /> Google Scholar
                                         </a>
                                     </div>
                                 </div>
@@ -398,9 +447,8 @@
                         </div>
                     </section>
 
-                    {/* Footer at the end of scrollable content */}
                     <footer className="py-6 border-t border-white/5 text-center text-gray-500 text-xs">
-                        <p>© {new Date().getFullYear()} Moulay Anwar Sounny-Slitine, PhD. Megafans Observatory.</p>
+                        <p>&copy; {new Date().getFullYear()} Moulay Anwar Sounny-Slitine, PhD. Megafans Observatory &bull; Earth (460) &amp; Mars (1,049) Planetary Geodatabase.</p>
                     </footer>
                 </div>
             );
@@ -416,7 +464,6 @@
                     <p className="text-gray-400 leading-relaxed">{desc}</p>
                 </div>
             );
-
             return href ? <a href={href} className="block"><Content /></a> : <div onClick={onClick}><Content /></div>;
         }
 
@@ -435,12 +482,12 @@
                     <p className="text-gray-400 text-xs leading-relaxed mb-6 line-clamp-4">{bio}</p>
                     <div className="flex gap-4">
                         {linkedin && (
-                            <a href={linkedin} target="_blank" className="text-gray-500 hover:text-primary transition-all hover:scale-110">
+                            <a href={linkedin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-primary transition-all hover:scale-110">
                                 <Icon name="linkedin" className="w-4 h-4" />
                             </a>
                         )}
                         {website && (
-                            <a href={website} target="_blank" className="text-gray-500 hover:text-secondary transition-all hover:scale-110">
+                            <a href={website} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-secondary transition-all hover:scale-110">
                                 <Icon name="globe" className="w-4 h-4" />
                             </a>
                         )}
@@ -449,18 +496,19 @@
             );
         }
 
-
         function PublicationCard({ icon, title, desc, link }) {
             return (
-                <a href={link} target="_blank" className="glass p-8 rounded-2xl group hover:border-primary/30 transition-all cursor-pointer block">
-                    <div className="flex justify-between items-start mb-6">
-                        <div className="p-3 bg-secondary/20 rounded-xl text-secondary group-hover:bg-primary/20 group-hover:text-primary transition-colors">
-                            <Icon name={icon} className="w-8 h-8" />
+                <a href={link} target="_blank" rel="noopener noreferrer" className="glass p-8 rounded-2xl group hover:border-primary/30 transition-all cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <div className="flex justify-between items-start mb-6">
+                            <div className="p-3 bg-secondary/20 rounded-xl text-secondary group-hover:bg-primary/20 group-hover:text-primary transition-colors">
+                                <Icon name={icon} className="w-8 h-8" />
+                            </div>
+                            <Icon name="external-link" className="text-gray-600" />
                         </div>
-                        <Icon name="external-link" className="text-gray-600" />
+                        <h3 className="text-2xl font-bold mb-3">{title}</h3>
+                        <p className="text-gray-400 text-sm leading-relaxed mb-6">{desc}</p>
                     </div>
-                    <h3 className="text-2xl font-bold mb-3">{title}</h3>
-                    <p className="text-gray-400 mb-6">{desc}</p>
                     <span className="text-primary font-bold inline-flex items-center gap-2 group-hover:gap-3 transition-all">
                         Access <Icon name="arrow-right" className="w-4 h-4" />
                     </span>
@@ -468,42 +516,52 @@
             );
         }
 
-        function ImageryView() {
-            const [earthFans, setEarthFans] = useState([]);
-            const [marsFans, setMarsFans] = useState([]);
+        function ImageryView({ earthFans, marsFans, polygonsData, isLoading, selectedTarget, clearSelectedTarget, onOpenDatabase }) {
             const [planet, setPlanet] = useState('earth');
+            const [earthBasemap, setEarthBasemap] = useState('satellite');
             const [marsBasemap, setMarsBasemap] = useState('viking');
+            const [earthFilter, setEarthFilter] = useState('all');
+            const [showPolygons, setShowPolygons] = useState(true);
             const [activeFan, setActiveFan] = useState(null);
             const [searchQuery, setSearchQuery] = useState('');
-            const [isSuggesting, setIsSuggesting] = useState(false);
             const [lightboxOpen, setLightboxOpen] = useState(false);
-            const [isLoading, setIsLoading] = useState(true);
             const [sidebarOpen, setSidebarOpen] = useState(true);
+
             const mapContainerRef = useRef(null);
             const leafletMap = useRef(null);
             const markersLayerRef = useRef(null);
+            const polygonLayerRef = useRef(null);
+            const vectorAxisRef = useRef(null);
             const tileLayerRef = useRef(null);
 
-            // Fetch data
             useEffect(() => {
-                Promise.all([
-                    fetch('public/data/catalog.json').then(res => res.json()),
-                    fetch('public/data/mars_catalog.json').then(res => res.json())
-                ])
-                .then(([earthData, marsData]) => {
-                    setEarthFans(earthData);
-                    setMarsFans(marsData);
-                    setIsLoading(false);
-                })
-                .catch(error => {
-                    console.error("Error loading fan data:", error);
-                    setIsLoading(false);
-                });
-            }, []);
+                if (selectedTarget && selectedTarget.fan) {
+                    setPlanet(selectedTarget.planet || 'earth');
+                    setEarthFilter('all');
+                    setActiveFan(selectedTarget.fan);
+                    clearSelectedTarget();
+                }
+            }, [selectedTarget]);
 
-            const currentFans = planet === 'earth' ? earthFans : marsFans;
+            const currentFans = useMemo(() => {
+                if (planet === 'mars') return marsFans;
+                if (earthFilter === 'featured') return earthFans.filter(f => f.featured);
+                if (earthFilter === 'measured') return earthFans.filter(f => f.areaKm2 != null);
+                if (earthFilter !== 'all') return earthFans.filter(f => (f.continent || '').toLowerCase() === earthFilter.toLowerCase());
+                return earthFans;
+            }, [planet, earthFans, marsFans, earthFilter]);
 
-            // Handle Planet Toggle
+            const filteredFans = useMemo(() => {
+                const q = searchQuery.trim().toLowerCase();
+                if (!q) return currentFans;
+                return currentFans.filter(fan =>
+                    fan.name.toLowerCase().includes(q) ||
+                    (fan.location && fan.location.toLowerCase().includes(q)) ||
+                    (fan.system && fan.system.toLowerCase().includes(q)) ||
+                    (fan.tags && fan.tags.some(tag => tag.toLowerCase().includes(q)))
+                );
+            }, [currentFans, searchQuery]);
+
             const togglePlanet = (newPlanet) => {
                 if (newPlanet === planet) return;
                 setPlanet(newPlanet);
@@ -514,12 +572,14 @@
             useEffect(() => {
                 if (typeof L !== 'undefined' && mapContainerRef.current && !leafletMap.current) {
                     leafletMap.current = L.map(mapContainerRef.current, {
-                        center: [0, 0],
+                        center: [10, 15],
                         zoom: 2.5,
-                        zoomControl: false
+                        zoomControl: false,
+                        preferCanvas: true
                     });
-
                     L.control.zoom({ position: 'bottomright' }).addTo(leafletMap.current);
+                    polygonLayerRef.current = L.featureGroup().addTo(leafletMap.current);
+                    vectorAxisRef.current = L.featureGroup().addTo(leafletMap.current);
                     markersLayerRef.current = L.featureGroup().addTo(leafletMap.current);
                 }
 
@@ -527,18 +587,25 @@
                     if (tileLayerRef.current) {
                         leafletMap.current.removeLayer(tileLayerRef.current);
                     }
-                    
                     let tileUrl = '';
                     let tileOptions = {};
                     let isWms = false;
 
                     if (planet === 'earth') {
-                        tileUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-                        tileOptions = { attribution: 'Tiles &copy; Esri' };
+                        if (earthBasemap === 'satellite') {
+                            tileUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+                            tileOptions = { attribution: 'Tiles &copy; Esri World Imagery' };
+                        } else if (earthBasemap === 'topo') {
+                            tileUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}';
+                            tileOptions = { attribution: 'Tiles &copy; Esri Topographic' };
+                        } else {
+                            tileUrl = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+                            tileOptions = { attribution: '&copy; OpenStreetMap &copy; CARTO' };
+                        }
                     } else {
                         if (marsBasemap === 'viking') {
                             tileUrl = 'https://cartocdn-gusc.global.ssl.fastly.net/opmbuilder/api/v1/map/named/opm-mars-basemap-v0-1/all/{z}/{x}/{y}.png';
-                            tileOptions = { attribution: 'OpenPlanetary' };
+                            tileOptions = { attribution: 'OpenPlanetary Mars Viking' };
                         } else if (marsBasemap === 'themis') {
                             tileUrl = 'https://planetarymaps.usgs.gov/cgi-bin/mapserv?map=/maps/mars/mars_simp_cyl.map';
                             tileOptions = { layers: 'THEMIS', format: 'image/png', transparent: true, attribution: 'USGS Astrogeology', crs: L.CRS.EPSG4326 };
@@ -549,7 +616,7 @@
                             isWms = true;
                         }
                     }
-                    
+
                     if (isWms) {
                         tileLayerRef.current = L.tileLayer.wms(tileUrl, tileOptions).addTo(leafletMap.current);
                     } else {
@@ -557,177 +624,236 @@
                     }
                 }
 
-                if (leafletMap.current && markersLayerRef.current) {
-                    markersLayerRef.current.clearLayers();
-
-                    if (currentFans.length > 0) {
-                        currentFans.forEach(fan => {
-                            const isActive = activeFan && fan.id === activeFan.id;
-                            const markerColor = planet === 'earth' ? '#00d2ff' : '#ff4d4d';
-                            const markerHtml = `<div style="background-color: ${isActive ? '#fff' : markerColor}; width: 14px; height: 14px; border-radius: 50%; border: 2px solid ${isActive ? markerColor : '#fff'}; box-shadow: 0 0 10px ${isActive ? '#fff' : markerColor}; cursor: pointer; transition: all 0.3s; transform: ${isActive ? 'scale(1.3)' : 'scale(1)'};"></div>`;
-
-                            const markerIcon = L.divIcon({
-                                className: 'custom-marker',
-                                html: markerHtml,
-                                iconSize: [14, 14],
-                                iconAnchor: [7, 7]
-                            });
-
-                            const marker = L.marker(fan.coords, { icon: markerIcon }).on('click', (e) => {
-                                setActiveFan(fan);
-                                L.DomEvent.stopPropagation(e);
-                            });
-                            marker.addTo(markersLayerRef.current);
-                        });
+                // Render Megafan Polygon Footprints on Earth
+                if (leafletMap.current && polygonLayerRef.current) {
+                    polygonLayerRef.current.clearLayers();
+                    if (planet === 'earth' && showPolygons && polygonsData) {
+                        L.geoJSON(polygonsData, {
+                            style: (feature) => {
+                                const isSel = activeFan && feature.properties.shortName &&
+                                    activeFan.name.toLowerCase().includes(feature.properties.shortName.toLowerCase());
+                                return {
+                                    color: isSel ? '#ffffff' : '#00d2ff',
+                                    weight: isSel ? 2.5 : 1.5,
+                                    fillColor: '#00d2ff',
+                                    fillOpacity: isSel ? 0.28 : 0.12,
+                                    dashArray: isSel ? '' : '4,4'
+                                };
+                            },
+                            onEachFeature: (feature, layer) => {
+                                layer.bindTooltip(feature.properties.name, { sticky: true });
+                                layer.on('click', (e) => {
+                                    const sname = (feature.properties.shortName || '').toLowerCase();
+                                    const match = earthFans.find(f => (f.rawName || f.name).toLowerCase().includes(sname));
+                                    if (match) setActiveFan(match);
+                                    L.DomEvent.stopPropagation(e);
+                                });
+                            }
+                        }).addTo(polygonLayerRef.current);
                     }
                 }
 
+                // Render Apex-to-Toe Vector Axis for active fan
+                if (leafletMap.current && vectorAxisRef.current) {
+                    vectorAxisRef.current.clearLayers();
+                    if (planet === 'earth' && activeFan && activeFan.apexCoords && activeFan.toeCoords) {
+                        const line = L.polyline([activeFan.apexCoords, activeFan.toeCoords], {
+                            color: '#fbbf24',
+                            weight: 3,
+                            dashArray: '6, 6'
+                        }).bindTooltip(`Apex → Toe Axis (${activeFan.lengthKm || ''} km)`);
+                        line.addTo(vectorAxisRef.current);
+                    }
+                }
+
+                // Render Fan Markers using fast CircleMarkers
+                if (leafletMap.current && markersLayerRef.current) {
+                    markersLayerRef.current.clearLayers();
+                    const baseColor = planet === 'earth' ? '#00d2ff' : '#ff4d4d';
+                    filteredFans.forEach(fan => {
+                        const isActive = activeFan && fan.id === activeFan.id;
+                        const isMajor = fan.featured || (fan.areaKm2 && fan.areaKm2 >= 5000);
+                        const marker = L.circleMarker(fan.coords, {
+                            radius: isActive ? 9 : (isMajor ? 6.5 : 4.5),
+                            fillColor: isActive ? '#ffffff' : (isMajor ? baseColor : '#38bdf8'),
+                            color: isActive ? baseColor : '#ffffff',
+                            weight: isActive ? 3 : 1.2,
+                            opacity: 1,
+                            fillOpacity: isActive ? 1 : (isMajor ? 0.9 : 0.75)
+                        }).bindTooltip(`${fan.name}${fan.areaKm2 ? ` (${fan.areaKm2.toLocaleString()} km²)` : ''}`);
+                        marker.on('click', (e) => {
+                            setActiveFan(fan);
+                            L.DomEvent.stopPropagation(e);
+                        });
+                        marker.addTo(markersLayerRef.current);
+                    });
+                }
+
                 lucide.createIcons({ icons: allIcons });
-            }, [activeFan, currentFans, planet, marsBasemap]);
+            }, [activeFan, filteredFans, planet, earthBasemap, marsBasemap, showPolygons, polygonsData]);
 
             useEffect(() => {
                 if (leafletMap.current && activeFan) {
-                    leafletMap.current.flyTo(activeFan.coords, 8, { duration: 1.5 });
+                    leafletMap.current.flyTo(activeFan.coords, 7, { duration: 1.2 });
                 } else if (leafletMap.current && !activeFan) {
-                    leafletMap.current.flyTo([0, 0], 2.5, { duration: 1.5 });
+                    leafletMap.current.flyTo([10, 15], 2.5, { duration: 1.2 });
                 }
             }, [activeFan]);
-
-            const filteredFans = currentFans.filter(fan =>
-                fan.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                fan.location.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                fan.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-            );
 
             if (isLoading) {
                 return (
                     <div className="flex-1 flex items-center justify-center bg-bg">
-                        <div className="animate-spin text-primary">
-                            <Icon name="loader-2" className="w-12 h-12" />
-                        </div>
+                        <div className="animate-spin text-primary"><Icon name="loader-2" className="w-12 h-12" /></div>
                     </div>
                 );
             }
 
             return (
                 <div className="flex-1 flex flex-col relative bg-bg overflow-hidden animate-in fade-in duration-500">
-                    {/* Integrated Header Bar */}
-                    <div className="glass border-b border-white/10 px-6 py-3 flex flex-wrap items-center justify-between z-[2000] gap-4">
-                        <div className="flex items-center gap-6">
+                    {/* Integrated Control Header Bar */}
+                    <div className="glass border-b border-white/10 px-4 md:px-6 py-2.5 flex flex-wrap items-center justify-between z-[2000] gap-3">
+                        <div className="flex flex-wrap items-center gap-3">
                             <button
                                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                                className="p-2.5 hover:bg-white/10 rounded-xl transition-all text-primary border border-white/5 active:scale-95"
-                                title="Toggle Catalog"
+                                className="p-2 hover:bg-white/10 rounded-xl transition-all text-primary border border-white/10"
+                                title="Toggle Catalog Sidebar"
                             >
                                 <Icon name={sidebarOpen ? "panel-left-close" : "panel-left-open"} className="w-5 h-5" />
                             </button>
-                            
+
                             {/* Planet Toggle */}
                             <div className="flex bg-black/50 rounded-xl p-1 border border-white/10">
                                 <button
                                     onClick={() => togglePlanet('earth')}
-                                    className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${planet === 'earth' ? 'bg-primary text-black' : 'text-gray-400 hover:text-white'}`}
+                                    className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${planet === 'earth' ? 'bg-primary text-black' : 'text-gray-400 hover:text-white'}`}
                                 >
-                                    Earth
+                                    Earth ({earthFans.length})
                                 </button>
                                 <button
                                     onClick={() => togglePlanet('mars')}
-                                    className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase tracking-widest transition-all ${planet === 'mars' ? 'bg-[#ff4d4d] text-white' : 'text-gray-400 hover:text-white'}`}
+                                    className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider transition-all ${planet === 'mars' ? 'bg-[#ff4d4d] text-white' : 'text-gray-400 hover:text-white'}`}
                                 >
-                                    Mars
+                                    Mars ({marsFans.length})
                                 </button>
                             </div>
 
-                            {planet === 'mars' && (
-                                <div className="flex bg-black/30 rounded-xl p-1 border border-white/5 ml-2">
+                            {planet === 'earth' ? (
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <div className="flex bg-black/30 rounded-xl p-1 border border-white/5">
+                                        <button onClick={() => setEarthBasemap('satellite')} className={`px-2.5 py-1 text-[10px] font-bold uppercase rounded ${earthBasemap === 'satellite' ? 'bg-primary/20 text-primary' : 'text-gray-400 hover:text-white'}`}>Satellite</button>
+                                        <button onClick={() => setEarthBasemap('topo')} className={`px-2.5 py-1 text-[10px] font-bold uppercase rounded ${earthBasemap === 'topo' ? 'bg-primary/20 text-primary' : 'text-gray-400 hover:text-white'}`}>Topo</button>
+                                        <button onClick={() => setEarthBasemap('dark')} className={`px-2.5 py-1 text-[10px] font-bold uppercase rounded ${earthBasemap === 'dark' ? 'bg-primary/20 text-primary' : 'text-gray-400 hover:text-white'}`}>Dark</button>
+                                    </div>
+                                    <button
+                                        onClick={() => setShowPolygons(!showPolygons)}
+                                        className={`px-3 py-1.5 rounded-xl text-[10px] font-bold uppercase tracking-wider border transition-all ${showPolygons ? 'bg-primary/15 text-primary border-primary/40' : 'bg-white/5 text-gray-400 border-white/10'}`}
+                                    >
+                                        Polygons (19)
+                                    </button>
+                                    <select
+                                        value={earthFilter}
+                                        onChange={(e) => setEarthFilter(e.target.value)}
+                                        className="bg-black/60 border border-white/10 rounded-xl px-3 py-1.5 text-xs font-bold text-gray-200 focus:outline-none focus:border-primary"
+                                    >
+                                        <option value="all">All Earth Systems ({earthFans.length})</option>
+                                        <option value="featured">Featured Megafans (75)</option>
+                                        <option value="measured">With Planform Area (125)</option>
+                                        <option value="South America">South America</option>
+                                        <option value="Asia">Asia</option>
+                                        <option value="Africa">Africa</option>
+                                        <option value="North America">North America</option>
+                                        <option value="Europe">Europe</option>
+                                        <option value="Australia">Australia</option>
+                                    </select>
+                                </div>
+                            ) : (
+                                <div className="flex bg-black/30 rounded-xl p-1 border border-white/5">
                                     <button onClick={() => setMarsBasemap('viking')} className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded ${marsBasemap === 'viking' ? 'bg-[#ff4d4d]/20 text-[#ff4d4d]' : 'text-gray-500 hover:text-gray-300'}`}>Viking</button>
                                     <button onClick={() => setMarsBasemap('themis')} className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded ${marsBasemap === 'themis' ? 'bg-[#ff4d4d]/20 text-[#ff4d4d]' : 'text-gray-500 hover:text-gray-300'}`}>THEMIS IR</button>
                                     <button onClick={() => setMarsBasemap('mola')} className={`px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded ${marsBasemap === 'mola' ? 'bg-[#ff4d4d]/20 text-[#ff4d4d]' : 'text-gray-500 hover:text-gray-300'}`}>MOLA</button>
                                 </div>
                             )}
 
-                            <div className="flex flex-col ml-4">
-                                <h2 className="text-lg font-heading font-extrabold text-white leading-none mb-1">
-                                    {activeFan ? activeFan.name : "Planetary Observatory"}
-                                </h2>
-                                <p className="text-[10px] text-gray-500 font-bold tracking-[.2em] uppercase">
-                                    {activeFan ? activeFan.location : "Global Observation Field"}
-                                </p>
-                            </div>
                             {activeFan && (
                                 <button
                                     onClick={() => setActiveFan(null)}
-                                    className="p-1 px-3 bg-white/5 hover:bg-white/10 rounded-full text-[10px] font-bold text-gray-400 hover:text-primary transition-all flex items-center gap-2 border border-white/10"
+                                    className="px-3 py-1 bg-white/5 hover:bg-white/10 rounded-full text-[10px] font-bold text-gray-300 hover:text-primary transition-all flex items-center gap-1.5 border border-white/10"
                                 >
-                                    <Icon name="globe" className="w-3 h-3" /> Reset
+                                    <Icon name="rotate-ccw" className="w-3 h-3" /> Reset View
                                 </button>
                             )}
                         </div>
 
-                        <div className="flex-1 max-w-md hidden md:block">
-                            <div className="relative group">
-                                <Icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 group-focus-within:text-primary transition-colors" />
+                        <div className="flex items-center gap-3 flex-1 max-w-md justify-end">
+                            <div className="relative flex-1 hidden md:block">
+                                <Icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
                                 <input
                                     type="text"
-                                    placeholder="Scan for regional sensors..."
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
+                                    placeholder={`Search ${filteredFans.length} ${planet === 'earth' ? 'Earth' : 'Martian'} fans...`}
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-1.5 pl-9 pr-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-primary"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                 />
                             </div>
-                        </div>
-
-                        <div className="flex items-center gap-3">
                             <button
-                                onClick={() => setIsSuggesting(true)}
-                                className="glass px-5 py-2 rounded-xl text-xs font-bold text-primary hover:bg-primary/20 transition-all flex items-center gap-2 border border-primary/20"
+                                onClick={onOpenDatabase}
+                                className="glass px-4 py-1.5 rounded-xl text-xs font-bold text-primary hover:bg-primary/20 transition-all flex items-center gap-2 border border-primary/20 whitespace-nowrap"
                             >
-                                <Icon name="crosshair" className="w-4 h-4" /> Suggest Feature
+                                <Icon name="table" className="w-4 h-4" /> Full Table
                             </button>
                         </div>
                     </div>
 
                     <div className="flex-1 flex relative overflow-hidden">
-                        {/* Sidebar - Pushes Map Content */}
-                        <div className={`flex flex-col bg-black/40 border-r border-white/5 transition-all duration-500 overflow-hidden ${sidebarOpen ? 'w-80 opacity-100' : 'w-0 opacity-0 border-none'}`}>
-                            <div className="p-4 border-b border-white/5 flex items-center justify-between lg:hidden">
-                                <span className="text-xs font-bold text-gray-500 uppercase tracking-widest">Catalog</span>
-                                <button onClick={() => setSidebarOpen(false)} className="text-gray-500"><Icon name="x" className="w-5 h-5" /></button>
+                        {/* Catalog Sidebar */}
+                        <div className={`flex flex-col bg-black/50 border-r border-white/5 transition-all duration-300 overflow-hidden ${sidebarOpen ? 'w-80 opacity-100' : 'w-0 opacity-0 border-none'}`}>
+                            <div className="px-4 py-2.5 border-b border-white/5 flex items-center justify-between text-[11px] font-mono text-gray-400">
+                                <span>SHOWING {filteredFans.length.toLocaleString()} SYSTEMS</span>
+                                {searchQuery && <button onClick={() => setSearchQuery('')} className="text-primary hover:underline">Clear</button>}
                             </div>
 
-                            {/* Mobile Search - Only visible when header search is hidden */}
-                            <div className="p-4 md:hidden border-b border-white/5">
-                                <div className="relative">
-                                    <Icon name="search" className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
-                                    <input
-                                        type="text"
-                                        placeholder="Search sensors..."
-                                        className="w-full bg-white/5 border border-white/10 rounded-xl py-2 pl-10 pr-4 text-sm text-white focus:outline-none"
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                    />
-                                </div>
+                            <div className="p-3 md:hidden border-b border-white/5">
+                                <input
+                                    type="text"
+                                    placeholder="Search fans..."
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-1.5 px-3 text-xs text-white focus:outline-none"
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
                             </div>
 
-                            <div className="flex-1 overflow-y-auto p-4 space-y-2">
+                            <div className="flex-1 overflow-y-auto p-3 space-y-1.5">
                                 {filteredFans.length === 0 ? (
-                                    <div className="p-8 text-center text-gray-500 text-xs italic">Negative detection.</div>
+                                    <div className="p-8 text-center text-gray-500 text-xs italic">No matching fans found.</div>
                                 ) : (
-                                    filteredFans.map(fan => (
+                                    filteredFans.slice(0, 250).map(fan => (
                                         <div
                                             key={fan.id}
                                             onClick={() => {
                                                 setActiveFan(fan);
                                                 if (window.innerWidth < 1024) setSidebarOpen(false);
                                             }}
-                                            className={`p-4 rounded-2xl cursor-pointer transition-all border border-transparent hover:bg-white/5 group ${activeFan?.id === fan.id ? (planet === 'earth' ? 'bg-primary/10 border-primary/20 shadow-inner' : 'bg-[#ff4d4d]/10 border-[#ff4d4d]/20 shadow-inner') : ''}`}
+                                            className={`p-3 rounded-xl cursor-pointer transition-all border border-transparent hover:bg-white/5 group ${activeFan?.id === fan.id ? (planet === 'earth' ? 'bg-primary/10 border-primary/30' : 'bg-[#ff4d4d]/10 border-[#ff4d4d]/30') : ''}`}
                                         >
-                                            <h5 className={`font-bold transition-colors mb-1 ${activeFan?.id === fan.id ? (planet === 'earth' ? 'text-primary' : 'text-[#ff4d4d]') : 'text-gray-300 group-hover:text-white'}`}>{fan.name}</h5>
-                                            <p className="text-[10px] text-gray-500 flex items-center gap-1 font-bold">
-                                                <Icon name="map-pin" className="w-3 h-3" /> {fan.location}
-                                            </p>
+                                            <div className="flex items-start justify-between gap-2">
+                                                <h5 className={`text-xs font-bold transition-colors ${activeFan?.id === fan.id ? (planet === 'earth' ? 'text-primary' : 'text-[#ff4d4d]') : 'text-gray-200 group-hover:text-white'}`}>{fan.name}</h5>
+                                                {fan.areaKm2 && (
+                                                    <span className="text-[10px] font-mono text-primary/90 bg-primary/10 px-1.5 py-0.5 rounded whitespace-nowrap">
+                                                        {Math.round(fan.areaKm2).toLocaleString()} km²
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <div className="flex items-center justify-between mt-1 text-[10px] text-gray-500">
+                                                <span className="truncate">{fan.location}</span>
+                                                {fan.lengthKm && <span className="font-mono text-gray-400">L: {fan.lengthKm} km</span>}
+                                            </div>
                                         </div>
                                     ))
+                                )}
+                                {filteredFans.length > 250 && (
+                                    <div className="p-3 text-center text-[11px] text-gray-500">
+                                        Showing top 250 in sidebar (all {filteredFans.length.toLocaleString()} plotted on map). Use search or <button onClick={onOpenDatabase} className="text-primary underline">GeoDatabase Table</button> to browse all.
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -736,93 +862,311 @@
                         <div className="flex-1 relative">
                             <div ref={mapContainerRef} className="z-0 h-full w-full"></div>
 
-                            {/* Active Fan Detail Overlay */}
+                            {/* Active Fan Telemetry Card */}
                             {activeFan && (
-                                <div className="absolute bottom-6 right-6 lg:right-10 lg:max-w-md z-[1000] animate-in slide-in-from-bottom-10 duration-700">
-                                    <div className="glass p-0 rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] border-white/10">
+                                <div className="absolute bottom-5 right-5 left-5 sm:left-auto sm:w-[400px] z-[1000] animate-in slide-in-from-bottom-6 duration-300">
+                                    <div className="glass rounded-3xl overflow-hidden shadow-2xl border border-white/15">
                                         {activeFan.imageUrl && (
                                             <div
-                                                className="w-full h-48 overflow-hidden relative cursor-pointer group"
+                                                className="w-full h-44 overflow-hidden relative cursor-pointer group bg-black/40"
                                                 onClick={() => setLightboxOpen(true)}
                                             >
-                                                <img src={activeFan.imageUrl} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt={activeFan.name} />
-                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
-                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <div className="bg-primary/20 backdrop-blur-md p-4 rounded-full border border-primary/40">
-                                                        <Icon name="zoom-in" className="w-8 h-8 text-white" />
-                                                    </div>
+                                                <img src={activeFan.imageUrl} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt={activeFan.name} />
+                                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                                                    <span className="text-[10px] font-mono text-gray-300 bg-black/60 px-2.5 py-1 rounded-lg border border-white/10">
+                                                        {activeFan.imageSource || activeFan.sensor || 'Satellite Imagery'}
+                                                    </span>
+                                                    <span className="text-[10px] font-bold text-primary bg-black/70 px-2.5 py-1 rounded-lg border border-primary/30 flex items-center gap-1">
+                                                        <Icon name="zoom-in" className="w-3 h-3" /> Enlarge
+                                                    </span>
                                                 </div>
-                                                {activeFan.sensor && (
-                                                    <div className="absolute top-4 right-4 px-2 py-1 bg-black/60 backdrop-blur-xl rounded-lg text-[9px] font-black text-primary border border-white/10 uppercase tracking-widest z-10">
-                                                        {activeFan.sensor}
-                                                    </div>
-                                                )}
                                             </div>
                                         )}
-                                        <div className="p-6">
-                                            <div className="flex flex-wrap gap-1.5 mb-3">
-                                                {activeFan.tags.slice(0, 3).map(tag => (
-                                                    <span key={tag} className={`px-2 py-0.5 text-[9px] font-black rounded border uppercase tracking-tighter ${planet === 'earth' ? 'bg-primary/10 text-primary border-primary/20' : 'bg-[#ff4d4d]/10 text-[#ff4d4d] border-[#ff4d4d]/20'}`}>{tag}</span>
+                                        <div className="p-5">
+                                            <div className="flex items-start justify-between gap-2 mb-2">
+                                                <div>
+                                                    <h3 className="text-lg font-heading font-extrabold text-white leading-tight">{activeFan.name}</h3>
+                                                    <p className="text-[11px] text-gray-400 font-semibold">{activeFan.location} &bull; <span className="font-mono">{activeFan.coords[0].toFixed(2)}°, {activeFan.coords[1].toFixed(2)}°</span></p>
+                                                </div>
+                                                <button onClick={() => setActiveFan(null)} className="text-gray-400 hover:text-white p-1"><Icon name="x" className="w-4 h-4" /></button>
+                                            </div>
+
+                                            {/* Morphometric Metrics Grid */}
+                                            {(activeFan.areaKm2 || activeFan.lengthKm || activeFan.catchmentKm2 || activeFan.reliefM) && (
+                                                <div className="grid grid-cols-3 gap-2 my-3 p-2.5 rounded-xl bg-black/40 border border-white/10 text-center">
+                                                    <div>
+                                                        <div className="text-[9px] uppercase text-gray-500 font-bold">Fan Area</div>
+                                                        <div className="text-xs font-mono font-bold text-primary">{activeFan.areaKm2 ? `${Math.round(activeFan.areaKm2).toLocaleString()} km²` : '—'}</div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-[9px] uppercase text-gray-500 font-bold">Apex–Toe</div>
+                                                        <div className="text-xs font-mono font-bold text-white">{activeFan.lengthKm ? `${activeFan.lengthKm} km` : '—'}</div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="text-[9px] uppercase text-gray-500 font-bold">Catchment</div>
+                                                        <div className="text-xs font-mono font-bold text-secondary">{activeFan.catchmentKm2 ? `${Math.round(activeFan.catchmentKm2).toLocaleString()} km²` : (activeFan.reliefM ? `${Math.round(activeFan.reliefM)}m rel.` : '—')}</div>
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            <p className="text-gray-300 text-xs leading-relaxed mb-3 line-clamp-3">{activeFan.description}</p>
+
+                                            <div className="flex flex-wrap gap-1.5">
+                                                {(activeFan.tags || []).slice(0, 4).map(tag => (
+                                                    <span key={tag} className={`px-2 py-0.5 text-[9px] font-black rounded border uppercase ${planet === 'earth' ? 'bg-primary/10 text-primary border-primary/20' : 'bg-[#ff4d4d]/10 text-[#ff4d4d] border-[#ff4d4d]/20'}`}>{tag}</span>
                                                 ))}
                                             </div>
-                                            <p className="text-gray-300 text-xs leading-relaxed mb-5 font-medium line-clamp-3">{activeFan.description}</p>
-                                            {activeFan.imageUrl && (
-                                            <button
-                                                onClick={() => setLightboxOpen(true)}
-                                                className="w-full py-2.5 bg-white/5 hover:bg-white/10 text-white text-[10px] uppercase tracking-widest font-black rounded-xl border border-white/10 transition-all flex items-center justify-center gap-2"
-                                            >
-                                                Analyze Data
-                                            </button>
-                                            )}
                                         </div>
                                     </div>
                                 </div>
                             )}
                         </div>
-
-                        {/* Suggestion Modal Overhead */}
-                        {isSuggesting && (
-                            <div className="fixed inset-0 z-[3000] bg-black/80 backdrop-blur-xl flex items-center justify-center p-6 animate-in fade-in zoom-in-95 duration-300">
-                                <div className="glass p-12 rounded-[2.5rem] max-w-lg w-full relative shadow-[0_50px_100px_rgba(0,0,0,0.5)] border-white/10">
-                                    <button onClick={() => setIsSuggesting(false)} className="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors">
-                                        <Icon name="x" className="w-6 h-6" />
-                                    </button>
-                                    <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-8 text-primary border border-primary/20">
-                                        <Icon name="radar" className="w-8 h-8" />
-                                    </div>
-                                    <h3 className="text-3xl font-heading font-extrabold mb-4 text-white">Observation Entry</h3>
-                                    <p className="text-gray-400 mb-10 leading-relaxed text-lg">
-                                        Preparing a **Supabase** uplink for global telemetry submissions. Persistent coordinate logging is currently in sandbox mode.
-                                    </p>
-                                    <button onClick={() => setIsSuggesting(false)} className="w-full py-4 bg-primary text-black font-black text-xs uppercase tracking-widest rounded-2xl hover:scale-[1.02] transition-all">
-                                        Close Frequency
-                                    </button>
-                                </div>
-                            </div>
-                        )}
                     </div>
 
                     {/* Image Lightbox */}
                     {lightboxOpen && activeFan?.imageUrl && (
                         <div
-                            className="fixed inset-0 z-[5000] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 lg:p-20 animate-in fade-in zoom-in-95 duration-500 cursor-zoom-out"
+                            className="fixed inset-0 z-[5000] bg-black/95 backdrop-blur-2xl flex items-center justify-center p-4 lg:p-16 cursor-zoom-out"
                             onClick={() => setLightboxOpen(false)}
                         >
-                            <button className="absolute top-10 right-10 text-white/40 hover:text-white bg-white/5 p-3 rounded-full border border-white/10 transition-all">
-                                <Icon name="x" className="w-8 h-8" />
+                            <button className="absolute top-8 right-8 text-white/60 hover:text-white bg-white/10 p-3 rounded-full border border-white/10">
+                                <Icon name="x" className="w-6 h-6" />
                             </button>
-                            <div className="relative max-w-full max-h-full">
+                            <div className="max-w-5xl max-h-full flex flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
                                 <img
                                     src={activeFan.imageUrl}
-                                    className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-[0_50px_100px_rgba(0,0,0,0.8)] border border-white/10"
+                                    className="max-w-full max-h-[80vh] object-contain rounded-2xl border border-white/15 shadow-2xl bg-white/5"
                                     alt={activeFan.name}
-                                    onClick={(e) => e.stopPropagation()}
                                 />
-                                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 w-full">
-                                    <div className="px-6 py-3 bg-white/5 backdrop-blur-2xl flex items-center gap-3 rounded-2xl border border-white/10 text-white text-xs font-black uppercase tracking-[0.2em]">
-                                        <Icon name="satellite" className="w-5 h-5 text-primary" />
-                                        {activeFan.sensor || "Satellite Payload"}
+                                <div className="text-center">
+                                    <h4 className="text-lg font-heading font-bold text-white">{activeFan.name}</h4>
+                                    <p className="text-xs text-gray-400">{activeFan.imageSource || activeFan.sensor || 'Megafans Observatory'}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        function GeoDatabaseView({ earthFans, marsFans, onSelectFan }) {
+            const [tab, setTab] = useState('earth');
+            const [query, setQuery] = useState('');
+            const [continentFilter, setContinentFilter] = useState('all');
+            const [sortBy, setSortBy] = useState('area');
+            const [atlasModal, setAtlasModal] = useState(null);
+
+            useEffect(() => { lucide.createIcons({ icons: allIcons }); }, [tab]);
+
+            const filteredRows = useMemo(() => {
+                const src = tab === 'earth' ? earthFans : marsFans;
+                const q = query.trim().toLowerCase();
+                let list = src.filter(f => {
+                    if (tab === 'earth' && continentFilter !== 'all' && (f.continent || '').toLowerCase() !== continentFilter.toLowerCase()) {
+                        return false;
+                    }
+                    if (!q) return true;
+                    return (
+                        f.name.toLowerCase().includes(q) ||
+                        (f.location && f.location.toLowerCase().includes(q)) ||
+                        (f.system && f.system.toLowerCase().includes(q)) ||
+                        (f.description && f.description.toLowerCase().includes(q))
+                    );
+                });
+
+                if (tab === 'earth') {
+                    list = [...list].sort((a, b) => {
+                        if (sortBy === 'area') return (b.areaKm2 || -1) - (a.areaKm2 || -1);
+                        if (sortBy === 'length') return (b.lengthKm || -1) - (a.lengthKm || -1);
+                        if (sortBy === 'catchment') return (b.catchmentKm2 || -1) - (a.catchmentKm2 || -1);
+                        if (sortBy === 'relief') return (b.reliefM || -1) - (a.reliefM || -1);
+                        return a.name.localeCompare(b.name);
+                    });
+                }
+                return list;
+            }, [tab, earthFans, marsFans, query, continentFilter, sortBy]);
+
+            const exportCsv = () => {
+                const headers = tab === 'earth'
+                    ? ['ID', 'Name', 'Continent', 'Country', 'System', 'Latitude', 'Longitude', 'Planform_Area_km2', 'Catchment_Area_km2', 'Apex_Toe_Length_km', 'Gradient', 'Relief_m']
+                    : ['ID', 'Name', 'Geologic_Unit', 'Latitude', 'Longitude', 'Description'];
+                const rows = filteredRows.map(f => tab === 'earth'
+                    ? [f.id, `"${f.name}"`, `"${f.continent || ''}"`, `"${f.country || ''}"`, `"${f.system || ''}"`, f.coords[0], f.coords[1], f.areaKm2 ?? '', f.catchmentKm2 ?? '', f.lengthKm ?? '', f.gradient ?? '', f.reliefM ?? '']
+                    : [f.id, `"${f.name}"`, `"${f.location}"`, f.coords[0], f.coords[1], `"${(f.description || '').replace(/"/g, '""')}"`]
+                );
+                const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `megafans_${tab}_geodatabase.csv`;
+                a.click();
+            };
+
+            return (
+                <div className="flex-1 overflow-y-auto px-6 py-10">
+                    <div className="max-w-7xl mx-auto">
+                        {/* Header */}
+                        <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+                            <div>
+                                <span className="text-xs font-mono uppercase tracking-widest text-primary font-bold">Sounny-Slitine (2020) &amp; Planetary Catalog</span>
+                                <h1 className="text-3xl md:text-5xl font-heading font-extrabold text-white mt-1">Global Megafan GeoDatabase</h1>
+                            </div>
+                            <div className="flex flex-wrap gap-3">
+                                <button onClick={exportCsv} className="glass px-4 py-2.5 rounded-xl text-xs font-bold text-primary border border-primary/30 hover:bg-primary/20 transition-all flex items-center gap-2">
+                                    <Icon name="download" className="w-4 h-4" /> Export CSV ({filteredRows.length})
+                                </button>
+                                <a href="public/data/megafans_polygons.geojson" download="megafans_polygons.geojson" className="glass px-4 py-2.5 rounded-xl text-xs font-bold text-white border border-white/15 hover:border-primary/40 transition-all flex items-center gap-2">
+                                    <Icon name="map" className="w-4 h-4" /> Polygons GeoJSON (19)
+                                </a>
+                            </div>
+                        </div>
+
+                        {/* Regional Dissertation Cartographic Plates */}
+                        <div className="mb-12">
+                            <div className="flex items-center gap-4 mb-5">
+                                <h2 className="text-xl font-heading font-bold text-white">Regional Basin–Megafan <span className="text-primary">Cartographic Atlas</span></h2>
+                                <div className="h-px flex-1 bg-white/10"></div>
+                            </div>
+                            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                                {REGIONAL_ATLAS.map(reg => (
+                                    <div key={reg.id} onClick={() => setAtlasModal(reg)} className="glass rounded-2xl overflow-hidden border border-white/10 hover:border-primary/40 transition-all cursor-pointer group flex flex-col">
+                                        <div className="h-36 bg-white/95 p-2 overflow-hidden flex items-center justify-center">
+                                            <img src={reg.img} alt={reg.title} className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform" />
+                                        </div>
+                                        <div className="p-3.5 flex-1 flex flex-col justify-between">
+                                            <div>
+                                                <h4 className="text-sm font-heading font-bold text-white group-hover:text-primary transition-colors">{reg.title}</h4>
+                                                <p className="text-[10px] text-gray-400 mt-0.5">{reg.subtitle}</p>
+                                            </div>
+                                            <p className="text-[10px] font-mono text-gray-500 mt-2 line-clamp-2">{reg.fans}</p>
+                                        </div>
                                     </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Filter & Search Bar */}
+                        <div className="glass p-4 rounded-2xl mb-6 flex flex-wrap items-center justify-between gap-4 border border-white/10">
+                            <div className="flex flex-wrap items-center gap-3">
+                                <div className="flex bg-black/50 rounded-xl p-1 border border-white/10">
+                                    <button onClick={() => setTab('earth')} className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase transition-all ${tab === 'earth' ? 'bg-primary text-black' : 'text-gray-400 hover:text-white'}`}>
+                                        Earth ({earthFans.length})
+                                    </button>
+                                    <button onClick={() => setTab('mars')} className={`px-4 py-1.5 rounded-lg text-xs font-bold uppercase transition-all ${tab === 'mars' ? 'bg-[#ff4d4d] text-white' : 'text-gray-400 hover:text-white'}`}>
+                                        Mars ({marsFans.length})
+                                    </button>
+                                </div>
+
+                                {tab === 'earth' && (
+                                    <>
+                                        <select value={continentFilter} onChange={(e) => setContinentFilter(e.target.value)} className="bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-gray-200">
+                                            <option value="all">All Continents</option>
+                                            <option value="South America">South America</option>
+                                            <option value="Asia">Asia</option>
+                                            <option value="Africa">Africa</option>
+                                            <option value="North America">North America</option>
+                                            <option value="Europe">Europe</option>
+                                            <option value="Australia">Australia</option>
+                                        </select>
+                                        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="bg-black/60 border border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-gray-200">
+                                            <option value="area">Sort: Planform Area (km²)</option>
+                                            <option value="length">Sort: Apex–Toe Length (km)</option>
+                                            <option value="catchment">Sort: Catchment Area (km²)</option>
+                                            <option value="relief">Sort: Vertical Relief (m)</option>
+                                            <option value="name">Sort: Alphabetical</option>
+                                        </select>
+                                    </>
+                                )}
+                            </div>
+
+                            <div className="relative flex-1 min-w-[240px] max-w-md">
+                                <input
+                                    type="text"
+                                    placeholder="Filter by river/fan name, country, mountain system, or crater..."
+                                    value={query}
+                                    onChange={(e) => setQuery(e.target.value)}
+                                    className="w-full bg-black/50 border border-white/15 rounded-xl py-2 px-4 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-primary"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Data Table */}
+                        <div className="glass rounded-2xl overflow-hidden border border-white/10">
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr className="border-b border-white/10 bg-white/5 text-[10px] font-mono uppercase tracking-wider text-gray-400">
+                                            <th className="py-3.5 px-4">Fan / System Name</th>
+                                            <th className="py-3.5 px-4">{tab === 'earth' ? 'Region & Tectonic System' : 'Martian Geologic Unit'}</th>
+                                            <th className="py-3.5 px-4">Coordinates</th>
+                                            {tab === 'earth' ? (
+                                                <>
+                                                    <th className="py-3.5 px-4 text-right">Fan Area (km²)</th>
+                                                    <th className="py-3.5 px-4 text-right">Catchment (km²)</th>
+                                                    <th className="py-3.5 px-4 text-right">Apex–Toe (km)</th>
+                                                    <th className="py-3.5 px-4 text-right">Relief (m)</th>
+                                                </>
+                                            ) : (
+                                                <th className="py-3.5 px-4">Geomorphic Notes</th>
+                                            )}
+                                            <th className="py-3.5 px-4 text-right">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-white/5 text-xs">
+                                        {filteredRows.slice(0, 200).map(fan => (
+                                            <tr key={fan.id} className="hover:bg-white/5 transition-colors">
+                                                <td className="py-3 px-4 font-bold text-white">{fan.name}</td>
+                                                <td className="py-3 px-4 text-gray-400">
+                                                    {fan.location}
+                                                    {fan.system && fan.system !== 'Continental Foreland' ? <span className="ml-2 text-[10px] px-2 py-0.5 rounded bg-secondary/15 text-secondary font-mono">{fan.system}</span> : null}
+                                                </td>
+                                                <td className="py-3 px-4 font-mono text-[11px] text-gray-400">{fan.coords[0].toFixed(2)}°, {fan.coords[1].toFixed(2)}°</td>
+                                                {tab === 'earth' ? (
+                                                    <>
+                                                        <td className="py-3 px-4 font-mono text-right text-primary font-bold">{fan.areaKm2 ? fan.areaKm2.toLocaleString() : '—'}</td>
+                                                        <td className="py-3 px-4 font-mono text-right text-gray-300">{fan.catchmentKm2 ? fan.catchmentKm2.toLocaleString() : '—'}</td>
+                                                        <td className="py-3 px-4 font-mono text-right text-white">{fan.lengthKm ? fan.lengthKm.toLocaleString() : '—'}</td>
+                                                        <td className="py-3 px-4 font-mono text-right text-gray-400">{fan.reliefM != null ? Math.round(fan.reliefM) : '—'}</td>
+                                                    </>
+                                                ) : (
+                                                    <td className="py-3 px-4 text-gray-400 max-w-md truncate">{fan.description}</td>
+                                                )}
+                                                <td className="py-3 px-4 text-right">
+                                                    <button
+                                                        onClick={() => onSelectFan(fan, tab)}
+                                                        className="px-3 py-1 rounded-lg bg-primary/15 text-primary hover:bg-primary hover:text-black font-bold text-[10px] uppercase tracking-wider transition-all"
+                                                    >
+                                                        Map &#8599;
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {filteredRows.length > 200 && (
+                                <div className="p-4 text-center text-xs text-gray-400 border-t border-white/10">
+                                    Showing first 200 of {filteredRows.length.toLocaleString()} matching records. Use the search bar to filter or click <strong>Export CSV</strong> to download all {filteredRows.length.toLocaleString()} rows.
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Regional Atlas Modal */}
+                    {atlasModal && (
+                        <div className="fixed inset-0 z-[5000] bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 lg:p-12" onClick={() => setAtlasModal(null)}>
+                            <div className="max-w-4xl w-full glass p-6 rounded-3xl border border-white/15" onClick={e => e.stopPropagation()}>
+                                <div className="flex items-center justify-between mb-4">
+                                    <div>
+                                        <h3 className="text-xl font-heading font-bold text-white">{atlasModal.title}</h3>
+                                        <p className="text-xs text-gray-400">{atlasModal.subtitle} &bull; Major Systems: {atlasModal.fans}</p>
+                                    </div>
+                                    <button onClick={() => setAtlasModal(null)} className="p-2 text-gray-400 hover:text-white"><Icon name="x" className="w-6 h-6" /></button>
+                                </div>
+                                <div className="bg-white rounded-2xl p-4 flex items-center justify-center max-h-[75vh] overflow-hidden">
+                                    <img src={atlasModal.img} alt={atlasModal.title} className="max-h-[70vh] w-auto object-contain" />
                                 </div>
                             </div>
                         </div>
